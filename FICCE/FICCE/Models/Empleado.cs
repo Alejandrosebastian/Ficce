@@ -12,8 +12,11 @@ namespace FICCE.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Correo { get; set; }
-        public int Telefono { get; set; }
-
+        public string direccion { get; set; }
+        public string Telefono_convencional { get; set; }
+        public string telefono_movil { get; set; }
+        public int EmpresaId { get; set; }
+        public Empresa Empresa { get; set; }
 
     }
 }

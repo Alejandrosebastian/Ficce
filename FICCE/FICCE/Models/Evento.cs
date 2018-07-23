@@ -9,7 +9,9 @@ namespace FICCE.Models
     {
         public int EventoId { get; set; }
         public int año { get; set; }
-        public string  mes { get; set; }
+        public DateTime dia_inicio { get; set; }
+        public DateTime dia_fin { get; set; }
+        public int precio_estan { get; set; }
 
 
     }
