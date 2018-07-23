@@ -1,0 +1,45 @@
+﻿@model FICCE.Models.Estantes
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Estantes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroEstan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumeroEstan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LargoAncho)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LargoAncho)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evento.EventoId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planta.PlantaId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EstantesId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
