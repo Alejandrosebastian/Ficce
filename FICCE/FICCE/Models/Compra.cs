@@ -11,7 +11,8 @@ namespace FICCE.Models
         public Boolean Activo { get; set; }
         public int EstantesId { get; set; }
         public Estantes Estantes { get; set; }
-        public int ReservaId { get; set; }
-        public Reserva Reserva { get; set; }
+        public int EmpresaId { get; set; }
+        public Empresa Empresa { get; set; }
+        
     }
 }

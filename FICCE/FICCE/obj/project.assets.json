@@ -13125,25 +13125,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Users\\milto\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\Ficce\\FICCE\\FICCE\\FICCE.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\examenvisca\\Ficce\\FICCE\\FICCE\\FICCE.csproj",
       "projectName": "FICCE",
-      "projectPath": "C:\\Users\\DELL\\source\\repos\\Ficce\\FICCE\\FICCE\\FICCE.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\source\\repos\\Ficce\\FICCE\\FICCE\\obj\\",
+      "projectPath": "C:\\xampp\\htdocs\\examenvisca\\Ficce\\FICCE\\FICCE\\FICCE.csproj",
+      "packagesPath": "C:\\Users\\milto\\.nuget\\packages\\",
+      "outputPath": "C:\\xampp\\htdocs\\examenvisca\\Ficce\\FICCE\\FICCE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\milto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
