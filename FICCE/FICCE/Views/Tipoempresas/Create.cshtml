@@ -1,30 +1,29 @@
-﻿@model FICCE.Models.Planta
+﻿@model FICCE.Models.Tipoempresa
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
-<h4>Planta</h4>
+<h4>Tipoempresa</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PlantaId" />
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EdificioId" class="control-label"></label>
-                <select asp-for="EdificioId" class="form-control" asp-items="ViewBag.EdificioId"></select>
-                <span asp-validation-for="EdificioId" class="text-danger"></span>
+                <label asp-for="Detalle" class="control-label"></label>
+                <input asp-for="Detalle" class="form-control" />
+                <span asp-validation-for="Detalle" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FICCE.Models.Planta>
+﻿@model IEnumerable<FICCE.Models.Tipoempresa>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,9 +15,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Nombre)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Edificio)
-            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Detalle)
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -28,12 +28,12 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Edificio.Nombre)
+                @Html.DisplayFor(modelItem => item.Detalle)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PlantaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlantaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlantaId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TipoempresaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TipoempresaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TipoempresaId">Delete</a>
             </td>
         </tr>
 }

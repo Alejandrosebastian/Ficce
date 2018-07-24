@@ -1,0 +1,77 @@
+﻿@model IEnumerable<FICCE.Models.Empresa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono_contacto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono_convencional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.extenencion_telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.persona_responsable)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipoempresa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono_contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono_convencional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.extenencion_telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.persona_responsable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipoempresa.TipoempresaId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmpresaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmpresaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmpresaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

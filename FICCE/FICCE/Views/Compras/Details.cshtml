@@ -17,16 +17,16 @@
             @Html.DisplayFor(model => model.Activo)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Nombre)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Estantes)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Estantes.EstantesId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Reserva)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Reserva.ReservaId)
         </dd>
     </dl>
 </div>

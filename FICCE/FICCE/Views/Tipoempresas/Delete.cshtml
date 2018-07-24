@@ -1,4 +1,4 @@
-﻿@model FICCE.Models.Planta
+﻿@model FICCE.Models.Tipoempresa
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Planta</h4>
+    <h4>Tipoempresa</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,15 +18,15 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Edificio)
+            @Html.DisplayNameFor(model => model.Detalle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Edificio.Nombre)
+            @Html.DisplayFor(model => model.Detalle)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="PlantaId" />
+        <input type="hidden" asp-for="TipoempresaId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
