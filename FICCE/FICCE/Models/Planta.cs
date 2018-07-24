@@ -12,7 +12,7 @@ namespace FICCE.Models
         [Required(ErrorMessage = "Campo Requerido")]
         [Display(Name = "Nombre del piso")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre de la planta debe estar entre 3 y 50 caracteres")]
-        pusblic string Nombre { get; set; }
+        public string Nombre { get; set; }
         public int EdificioId { get; set; }
         public Edificio Edificio { get; set; }
 
