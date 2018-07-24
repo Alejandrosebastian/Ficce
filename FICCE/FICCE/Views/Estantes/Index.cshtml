@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<FICCE.Models.Estantes>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h2>Index</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -19,10 +13,10 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Ancho)
+                    @Html.DisplayNameFor(model => model.NumeroEstan)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Largo)
+                    @Html.DisplayNameFor(model => model.LargoAncho)
                 </th>
             <th>
                 @Html.DisplayNameFor(model => model.Evento)
@@ -37,16 +31,23 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ancho)
+                @Html.DisplayFor(modelItem => item.NumeroEstan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Largo)
+                @Html.DisplayFor(modelItem => item.LargoAncho)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Evento.EventoId)
             </td>
             <td>
+<<<<<<< HEAD
+                @Html.DisplayFor(modelItem => item.Evento.EventoId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Planta.Nombre)
+=======
+                @Html.DisplayFor(modelItem => item.Planta.PlantaId)
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EstantesId">Edit</a> |
@@ -57,5 +58,3 @@
 }
     </tbody>
 </table>
-</body>
-</html>

@@ -1,17 +1,10 @@
 ﻿@model FICCE.Models.Estantes
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Delete";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
+<h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -19,16 +12,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Ancho)
+            @Html.DisplayNameFor(model => model.NumeroEstan)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Ancho)
+            @Html.DisplayFor(model => model.NumeroEstan)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Largo)
+            @Html.DisplayNameFor(model => model.LargoAncho)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Largo)
+            @Html.DisplayFor(model => model.LargoAncho)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evento.EventoId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Evento)
@@ -40,7 +39,7 @@
             @Html.DisplayNameFor(model => model.Planta)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Planta.Nombre)
+            @Html.DisplayFor(model => model.Planta.PlantaId)
         </dd>
     </dl>
     
@@ -50,5 +49,3 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
-</body>
-</html>

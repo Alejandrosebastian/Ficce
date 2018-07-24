@@ -1,17 +1,10 @@
 ﻿@model FICCE.Models.Estantes
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Edit";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
+<h2>Edit</h2>
 
 <h4>Estantes</h4>
 <hr />
@@ -21,14 +14,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EstantesId" />
             <div class="form-group">
-                <label asp-for="Ancho" class="control-label"></label>
-                <input asp-for="Ancho" class="form-control" />
-                <span asp-validation-for="Ancho" class="text-danger"></span>
+                <label asp-for="NumeroEstan" class="control-label"></label>
+                <input asp-for="NumeroEstan" class="form-control" />
+                <span asp-validation-for="NumeroEstan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Largo" class="control-label"></label>
-                <input asp-for="Largo" class="form-control" />
-                <span asp-validation-for="Largo" class="text-danger"></span>
+                <label asp-for="LargoAncho" class="control-label"></label>
+                <input asp-for="LargoAncho" class="form-control" />
+                <span asp-validation-for="LargoAncho" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventoId" class="control-label"></label>
+                <select asp-for="EventoId" class="form-control" asp-items="ViewBag.EventoId"></select>
+                <span asp-validation-for="EventoId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EventoId" class="control-label"></label>
@@ -54,5 +52,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

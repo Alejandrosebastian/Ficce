@@ -15,9 +15,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Nombre)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Ubicacion)
-                </th>
             <th>
                 @Html.DisplayNameFor(model => model.Edificio)
             </th>
@@ -31,10 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ubicacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Edificio.EdificioId)
+                @Html.DisplayFor(modelItem => item.Edificio.Nombre)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PlantaId">Edit</a> |

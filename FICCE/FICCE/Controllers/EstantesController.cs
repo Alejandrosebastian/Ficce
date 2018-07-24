@@ -49,8 +49,13 @@ namespace FICCE.Controllers
         // GET: Estantes/Create
         public IActionResult Create()
         {
+<<<<<<< HEAD
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId");
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre");
+=======
+            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId");
+            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId");
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
             return View();
         }
 
@@ -59,7 +64,11 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+=======
+        public async Task<IActionResult> Create([Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +76,13 @@ namespace FICCE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< HEAD
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+=======
+            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
             return View(estantes);
         }
 
@@ -85,8 +99,13 @@ namespace FICCE.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+=======
+            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
             return View(estantes);
         }
 
@@ -95,7 +114,11 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+=======
+        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
         {
             if (id != estantes.EstantesId)
             {
@@ -122,8 +145,13 @@ namespace FICCE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< HEAD
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+=======
+            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+>>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
             return View(estantes);
         }
 

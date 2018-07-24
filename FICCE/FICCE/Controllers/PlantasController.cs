@@ -48,7 +48,7 @@ namespace FICCE.Controllers
         // GET: Plantas/Create
         public IActionResult Create()
         {
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "EdificioId");
+            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlantaId,Nombre,Ubicacion,EdificioId")] Planta planta)
+        public async Task<IActionResult> Create([Bind("PlantaId,Nombre,EdificioId")] Planta planta)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace FICCE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "EdificioId", planta.EdificioId);
+            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
             return View(planta);
         }
 
@@ -82,7 +82,7 @@ namespace FICCE.Controllers
             {
                 return NotFound();
             }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "EdificioId", planta.EdificioId);
+            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
             return View(planta);
         }
 
@@ -91,7 +91,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlantaId,Nombre,Ubicacion,EdificioId")] Planta planta)
+        public async Task<IActionResult> Edit(int id, [Bind("PlantaId,Nombre,EdificioId")] Planta planta)
         {
             if (id != planta.PlantaId)
             {
@@ -118,7 +118,7 @@ namespace FICCE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "EdificioId", planta.EdificioId);
+            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
             return View(planta);
         }
 

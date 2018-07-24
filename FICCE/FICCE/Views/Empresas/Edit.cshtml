@@ -1,17 +1,10 @@
 ﻿@model FICCE.Models.Empresa
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Edit";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
+<h2>Edit</h2>
 
 <h4>Empresa</h4>
 <hr />
@@ -74,5 +67,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

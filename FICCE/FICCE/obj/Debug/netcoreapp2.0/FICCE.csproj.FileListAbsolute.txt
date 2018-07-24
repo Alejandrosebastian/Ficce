@@ -10,15 +10,3 @@ C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.Assem
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfo.cs
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.pdb
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csprojResolveAssemblyReference.cache
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csproj.CoreCompileInputs.cache
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfoInputs.cache
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfo.cs
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.pdb
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.deps.json
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.runtimeconfig.json
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.runtimeconfig.dev.json
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.dll
-C:\xampp\htdocs\examenvisca\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.pdb
