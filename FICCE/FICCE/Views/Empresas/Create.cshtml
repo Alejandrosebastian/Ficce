@@ -1,0 +1,76 @@
+﻿@model FICCE.Models.Empresa
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>Empresa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="direccion" class="control-label"></label>
+                <input asp-for="direccion" class="form-control" />
+                <span asp-validation-for="direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="correo" class="control-label"></label>
+                <input asp-for="correo" class="form-control" />
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono_contacto" class="control-label"></label>
+                <input asp-for="telefono_contacto" class="form-control" />
+                <span asp-validation-for="telefono_contacto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono_convencional" class="control-label"></label>
+                <input asp-for="telefono_convencional" class="form-control" />
+                <span asp-validation-for="telefono_convencional" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="extenencion_telefono" class="control-label"></label>
+                <input asp-for="extenencion_telefono" class="form-control" />
+                <span asp-validation-for="extenencion_telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="persona_responsable" class="control-label"></label>
+                <input asp-for="persona_responsable" class="form-control" />
+                <span asp-validation-for="persona_responsable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoempresaId" class="control-label"></label>
+                <select asp-for="TipoempresaId" class ="form-control" asp-items="ViewBag.TipoempresaId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

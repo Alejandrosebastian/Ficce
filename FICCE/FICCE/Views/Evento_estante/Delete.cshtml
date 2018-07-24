@@ -1,4 +1,4 @@
-﻿@model FICCE.Models.Compra
+﻿@model FICCE.Models.Evento_estante
 
 @{
     Layout = null;
@@ -15,31 +15,25 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Compra</h4>
+    <h4>Evento_estante</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Empresa)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Empresa.Nombre)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Estantes)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Estantes.EstantesId)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evento.EventoId)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="CompraId" />
+        <input type="hidden" asp-for="Evento_estanteId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

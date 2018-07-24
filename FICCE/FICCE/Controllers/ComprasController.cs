@@ -22,7 +22,7 @@ namespace FICCE.Controllers
         // GET: Compras
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Compra.Include(c => c.Estantes).Include(c => c.Reserva);
+            var applicationDbContext = _context.Compra.Include(c => c.Empresa).Include(c => c.Estantes);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,8 +35,8 @@ namespace FICCE.Controllers
             }
 
             var compra = await _context.Compra
+                .Include(c => c.Empresa)
                 .Include(c => c.Estantes)
-                .Include(c => c.Reserva)
                 .SingleOrDefaultAsync(m => m.CompraId == id);
             if (compra == null)
             {
@@ -49,8 +49,8 @@ namespace FICCE.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
+            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre");
             ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId");
-            ViewData["ReservaId"] = new SelectList(_context.Set<Reserva>(), "ReservaId", "ReservaId");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompraId,Activo,EstantesId,ReservaId")] Compra compra)
+        public async Task<IActionResult> Create([Bind("CompraId,Activo,EstantesId,EmpresaId")] Compra compra)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace FICCE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
             ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            ViewData["ReservaId"] = new SelectList(_context.Set<Reserva>(), "ReservaId", "ReservaId", compra.ReservaId);
             return View(compra);
         }
 
@@ -85,8 +85,8 @@ namespace FICCE.Controllers
             {
                 return NotFound();
             }
+            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
             ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            ViewData["ReservaId"] = new SelectList(_context.Set<Reserva>(), "ReservaId", "ReservaId", compra.ReservaId);
             return View(compra);
         }
 
@@ -95,7 +95,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompraId,Activo,EstantesId,ReservaId")] Compra compra)
+        public async Task<IActionResult> Edit(int id, [Bind("CompraId,Activo,EstantesId,EmpresaId")] Compra compra)
         {
             if (id != compra.CompraId)
             {
@@ -122,8 +122,8 @@ namespace FICCE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
             ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            ViewData["ReservaId"] = new SelectList(_context.Set<Reserva>(), "ReservaId", "ReservaId", compra.ReservaId);
             return View(compra);
         }
 
@@ -136,8 +136,8 @@ namespace FICCE.Controllers
             }
 
             var compra = await _context.Compra
+                .Include(c => c.Empresa)
                 .Include(c => c.Estantes)
-                .Include(c => c.Reserva)
                 .SingleOrDefaultAsync(m => m.CompraId == id);
             if (compra == null)
             {

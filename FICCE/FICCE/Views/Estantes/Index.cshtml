@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<FICCE.Models.Estantes>
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -13,14 +19,11 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NumeroEstan)
+                    @Html.DisplayNameFor(model => model.Ancho)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LargoAncho)
+                    @Html.DisplayNameFor(model => model.Largo)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Evento)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Planta)
             </th>
@@ -31,16 +34,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeroEstan)
+                @Html.DisplayFor(modelItem => item.Ancho)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LargoAncho)
+                @Html.DisplayFor(modelItem => item.Largo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Evento.EventoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Planta.PlantaId)
+                @Html.DisplayFor(modelItem => item.Planta.Nombre)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EstantesId">Edit</a> |
@@ -51,3 +51,5 @@
 }
     </tbody>
 </table>
+</body>
+</html>

@@ -10,23 +10,23 @@ using FICCE.Models;
 
 namespace FICCE.Controllers
 {
-    public class EstantesController : Controller
+    public class EmpresasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EstantesController(ApplicationDbContext context)
+        public EmpresasController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Estantes
+        // GET: Empresas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Estantes.Include(e => e.Planta);
+            var applicationDbContext = _context.Empresa.Include(e => e.Tipoempresa);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Estantes/Details/5
+        // GET: Empresas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace FICCE.Controllers
                 return NotFound();
             }
 
-            var estantes = await _context.Estantes
-                .Include(e => e.Planta)
-                .SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
+            var empresa = await _context.Empresa
+                .Include(e => e.Tipoempresa)
+                .SingleOrDefaultAsync(m => m.EmpresaId == id);
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(estantes);
+            return View(empresa);
         }
 
-        // GET: Estantes/Create
+        // GET: Empresas/Create
         public IActionResult Create()
         {
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre");
+            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId");
             return View();
         }
 
-        // POST: Estantes/Create
+        // POST: Empresas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,PlantaId")] Estantes estantes)
+        public async Task<IActionResult> Create([Bind("EmpresaId,Nombre,direccion,correo,telefono_contacto,telefono_convencional,extenencion_telefono,persona_responsable,TipoempresaId")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(estantes);
+                _context.Add(empresa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
+            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
+            return View(empresa);
         }
 
-        // GET: Estantes/Edit/5
+        // GET: Empresas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace FICCE.Controllers
                 return NotFound();
             }
 
-            var estantes = await _context.Estantes.SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
+            var empresa = await _context.Empresa.SingleOrDefaultAsync(m => m.EmpresaId == id);
+            if (empresa == null)
             {
                 return NotFound();
             }
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
+            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
+            return View(empresa);
         }
 
-        // POST: Estantes/Edit/5
+        // POST: Empresas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,PlantaId")] Estantes estantes)
+        public async Task<IActionResult> Edit(int id, [Bind("EmpresaId,Nombre,direccion,correo,telefono_contacto,telefono_convencional,extenencion_telefono,persona_responsable,TipoempresaId")] Empresa empresa)
         {
-            if (id != estantes.EstantesId)
+            if (id != empresa.EmpresaId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace FICCE.Controllers
             {
                 try
                 {
-                    _context.Update(estantes);
+                    _context.Update(empresa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstantesExists(estantes.EstantesId))
+                    if (!EmpresaExists(empresa.EmpresaId))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace FICCE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
+            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
+            return View(empresa);
         }
 
-        // GET: Estantes/Delete/5
+        // GET: Empresas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +130,31 @@ namespace FICCE.Controllers
                 return NotFound();
             }
 
-            var estantes = await _context.Estantes
-                .Include(e => e.Planta)
-                .SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
+            var empresa = await _context.Empresa
+                .Include(e => e.Tipoempresa)
+                .SingleOrDefaultAsync(m => m.EmpresaId == id);
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(estantes);
+            return View(empresa);
         }
 
-        // POST: Estantes/Delete/5
+        // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var estantes = await _context.Estantes.SingleOrDefaultAsync(m => m.EstantesId == id);
-            _context.Estantes.Remove(estantes);
+            var empresa = await _context.Empresa.SingleOrDefaultAsync(m => m.EmpresaId == id);
+            _context.Empresa.Remove(empresa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstantesExists(int id)
+        private bool EmpresaExists(int id)
         {
-            return _context.Estantes.Any(e => e.EstantesId == id);
+            return _context.Empresa.Any(e => e.EmpresaId == id);
         }
     }
 }

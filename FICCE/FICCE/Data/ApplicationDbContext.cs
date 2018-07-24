@@ -34,5 +34,11 @@ namespace FICCE.Data
         public DbSet<FICCE.Models.Evento> Evento { get; set; }
 
         public DbSet<FICCE.Models.Planta> Planta { get; set; }
+
+        public DbSet<FICCE.Models.Empresa> Empresa { get; set; }
+
+        public DbSet<FICCE.Models.Evento_estante> Evento_estante { get; set; }
+
+        public DbSet<FICCE.Models.Tipoempresa> Tipoempresa { get; set; }
     }
 }

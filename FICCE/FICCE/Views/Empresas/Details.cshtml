@@ -1,0 +1,75 @@
+﻿@model FICCE.Models.Empresa
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono_contacto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.telefono_contacto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono_convencional)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.telefono_convencional)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.extenencion_telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.extenencion_telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.persona_responsable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.persona_responsable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipoempresa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipoempresa.TipoempresaId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EmpresaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

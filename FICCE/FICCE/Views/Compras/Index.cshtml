@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<FICCE.Models.Compra>
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -16,10 +22,10 @@
                     @Html.DisplayNameFor(model => model.Activo)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estantes)
+                @Html.DisplayNameFor(model => model.Empresa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reserva)
+                @Html.DisplayNameFor(model => model.Estantes)
             </th>
             <th></th>
         </tr>
@@ -31,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Activo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estantes.EstantesId)
+                @Html.DisplayFor(modelItem => item.Empresa.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Reserva.ReservaId)
+                @Html.DisplayFor(modelItem => item.Estantes.EstantesId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CompraId">Edit</a> |
@@ -45,3 +51,5 @@
 }
     </tbody>
 </table>
+</body>
+</html>
