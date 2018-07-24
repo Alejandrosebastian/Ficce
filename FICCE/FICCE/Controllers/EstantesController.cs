@@ -22,7 +22,7 @@ namespace FICCE.Controllers
         // GET: Estantes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Estantes.Include(e => e.Planta);
+            var applicationDbContext = _context.Estantes.Include(e => e.Evento).Include(e => e.Planta);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace FICCE.Controllers
             }
 
             var estantes = await _context.Estantes
+                .Include(e => e.Evento)
                 .Include(e => e.Planta)
                 .SingleOrDefaultAsync(m => m.EstantesId == id);
             if (estantes == null)
@@ -48,6 +49,7 @@ namespace FICCE.Controllers
         // GET: Estantes/Create
         public IActionResult Create()
         {
+            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId");
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre");
             return View();
         }
@@ -57,7 +59,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,PlantaId")] Estantes estantes)
+        public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +67,7 @@ namespace FICCE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
             return View(estantes);
         }
@@ -82,6 +85,7 @@ namespace FICCE.Controllers
             {
                 return NotFound();
             }
+            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
             return View(estantes);
         }
@@ -91,7 +95,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,PlantaId")] Estantes estantes)
+        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
         {
             if (id != estantes.EstantesId)
             {
@@ -118,6 +122,7 @@ namespace FICCE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
             return View(estantes);
         }
@@ -131,6 +136,7 @@ namespace FICCE.Controllers
             }
 
             var estantes = await _context.Estantes
+                .Include(e => e.Evento)
                 .Include(e => e.Planta)
                 .SingleOrDefaultAsync(m => m.EstantesId == id);
             if (estantes == null)

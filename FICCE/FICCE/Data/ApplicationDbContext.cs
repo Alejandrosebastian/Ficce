@@ -17,6 +17,10 @@ namespace FICCE.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
@@ -36,8 +40,6 @@ namespace FICCE.Data
         public DbSet<FICCE.Models.Planta> Planta { get; set; }
 
         public DbSet<FICCE.Models.Empresa> Empresa { get; set; }
-
-        public DbSet<FICCE.Models.Evento_estante> Evento_estante { get; set; }
 
         public DbSet<FICCE.Models.Tipoempresa> Tipoempresa { get; set; }
     }

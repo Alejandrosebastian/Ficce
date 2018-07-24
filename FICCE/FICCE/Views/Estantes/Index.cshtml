@@ -25,6 +25,9 @@
                     @Html.DisplayNameFor(model => model.Largo)
                 </th>
             <th>
+                @Html.DisplayNameFor(model => model.Evento)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Planta)
             </th>
             <th></th>
@@ -38,6 +41,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Largo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento.EventoId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Planta.Nombre)

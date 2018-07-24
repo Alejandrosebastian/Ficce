@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-FICCE-2C6DF2AE-0C33-4C75-9AA0-2F57C6F14AE2</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20180724153024_mil.cs" />
+    <Compile Remove="Data\Migrations\20180724153024_mil.Designer.cs" />
+    <Compile Remove="Migrations\20180724160635_inicial.cs" />
+    <Compile Remove="Migrations\20180724160635_inicial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
@@ -16,6 +23,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

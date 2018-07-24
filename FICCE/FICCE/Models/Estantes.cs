@@ -18,6 +18,8 @@ namespace FICCE.Models
         [StringLength(10, MinimumLength = 1, ErrorMessage = "El largo del estante debe estar entre 1 y 10 caracteres")]
         public int Largo { get; set; }
         //Relaciones
+        public int EventoId { get; set; }
+        public Evento Evento { get; set; }
         public int PlantaId { get; set; }
         public Planta Planta { get; set; }
 
