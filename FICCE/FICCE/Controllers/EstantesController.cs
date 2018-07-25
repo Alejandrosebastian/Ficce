@@ -71,6 +71,7 @@ namespace FICCE.Controllers
         // POST: Estantes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+<<<<<<< HEAD
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -94,6 +95,31 @@ namespace FICCE.Controllers
 
             return View(estantes);
         }
+=======
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+
+        //public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+
+        //public async Task<IActionResult> Create([Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(estantes);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+
+        //    ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+
+        //    return View(estantes);
+        //}
+>>>>>>> eb085f24ac1b0396c32e2445e4c2bf55caee8611
 
         // GET: Estantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -123,6 +149,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
 
        
 
@@ -163,6 +190,48 @@ namespace FICCE.Controllers
 
             return View(estantes);
         }
+=======
+
+        //public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+
+        //public async Task<IActionResult> Edit(int id, [Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+
+        //{
+        //    if (id != estantes.EstantesId)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(estantes);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!EstantesExists(estantes.EstantesId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+
+        //    ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+
+        //    return View(estantes);
+        //}
+>>>>>>> eb085f24ac1b0396c32e2445e4c2bf55caee8611
 
         // GET: Estantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
