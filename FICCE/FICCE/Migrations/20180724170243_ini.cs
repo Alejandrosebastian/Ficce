@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FICCE.Migrations
 {
-    public partial class mil : Migration
+    public partial class ini : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -11,8 +11,8 @@ using System;
 namespace FICCE.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180724161937_mil")]
-    partial class mil
+    [Migration("20180724170243_ini")]
+    partial class ini
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
