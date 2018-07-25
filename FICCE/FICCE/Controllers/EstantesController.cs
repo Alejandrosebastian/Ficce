@@ -49,42 +49,42 @@ namespace FICCE.Controllers
         // GET: Estantes/Create
         public IActionResult Create()
         {
-<<<<<<< HEAD
+
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId");
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre");
-=======
+
             ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId");
             ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId");
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
+
             return View();
         }
 
         // POST: Estantes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-        public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
-=======
-        public async Task<IActionResult> Create([Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(estantes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-<<<<<<< HEAD
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-=======
-            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
-            return View(estantes);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+
+        //public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+
+        //public async Task<IActionResult> Create([Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(estantes);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+
+        //    ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+
+        //    return View(estantes);
+        //}
 
         // GET: Estantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -99,13 +99,13 @@ namespace FICCE.Controllers
             {
                 return NotFound();
             }
-<<<<<<< HEAD
+
             ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-=======
+
             ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
             ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
+
             return View(estantes);
         }
 
@@ -114,46 +114,46 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
-=======
-        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
-        {
-            if (id != estantes.EstantesId)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(estantes);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EstantesExists(estantes.EstantesId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-<<<<<<< HEAD
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-=======
-            ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
->>>>>>> 10c4f1ce8e6330c4e774a2daa4b01eff97f1bd60
-            return View(estantes);
-        }
+        //public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
+
+        //public async Task<IActionResult> Edit(int id, [Bind("EstantesId,NumeroEstan,LargoAncho,EventoId,PlantaId")] Estantes estantes)
+
+        //{
+        //    if (id != estantes.EstantesId)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(estantes);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!EstantesExists(estantes.EstantesId))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
+
+        //    ViewData["EventoId"] = new SelectList(_context.Set<Evento>(), "EventoId", "EventoId", estantes.EventoId);
+        //    ViewData["PlantaId"] = new SelectList(_context.Set<Planta>(), "PlantaId", "PlantaId", estantes.PlantaId);
+
+        //    return View(estantes);
+        //}
 
         // GET: Estantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
