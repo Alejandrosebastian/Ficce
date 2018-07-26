@@ -71,7 +71,7 @@ namespace FICCE.Controllers
         // POST: Estantes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-<<<<<<< HEAD
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -95,7 +95,7 @@ namespace FICCE.Controllers
 
             return View(estantes);
         }
-=======
+
         //[HttpPost]
         //[ValidateAntiForgeryToken]
 
@@ -119,7 +119,7 @@ namespace FICCE.Controllers
 
         //    return View(estantes);
         //}
->>>>>>> eb085f24ac1b0396c32e2445e4c2bf55caee8611
+
 
         // GET: Estantes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -149,7 +149,7 @@ namespace FICCE.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
+
 
        
 
@@ -190,7 +190,7 @@ namespace FICCE.Controllers
 
             return View(estantes);
         }
-=======
+
 
         //public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,EventoId,PlantaId")] Estantes estantes)
 
@@ -231,7 +231,6 @@ namespace FICCE.Controllers
 
         //    return View(estantes);
         //}
->>>>>>> eb085f24ac1b0396c32e2445e4c2bf55caee8611
 
         // GET: Estantes/Delete/5
         public async Task<IActionResult> Delete(int? id)
