@@ -7,22 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
     public class TipoempresasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private Tipoempresa clasetipoempresa;
 
         public TipoempresasController(ApplicationDbContext context)
         {
             _context = context;
+            clasetipoempresa = new Tipoempresa(context);
         }
 
         // GET: Tipoempresas
         public async Task<IActionResult> Index()
         {
             return View(await _context.Tipoempresa.ToListAsync());
+            
+        }
+        public List<IdentityError> Controladorguardatipoempresa(string Detalle, string Nombre)
+        {
+
+            return clasetipoempresa.ModeloGuardatipoempres(Detalle,Nombre);
         }
 
         // GET: Tipoempresas/Details/5

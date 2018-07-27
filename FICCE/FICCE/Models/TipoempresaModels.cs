@@ -55,9 +55,16 @@ namespace FICCE.Models
             {
                 html +="<tr>"+
                     "<td>"+ item.Detalle +"</td>"+
-                    "<td>" + item.Nombre + "</td>" +
+                    "<td>" + item.Nombre + "</td>" + "data-toggle='modal'  data-target='#IngresoSexo'" +
+                    "onclick='Cargasexo(" + item.TipoempresaId + ")'>" +
+                     "</td><tr>";
+
 
             }
+            object[] dato = { html };
+            listatipoempresa.Add(dato);
+            return listatipoempresa;
+
         }
 
     }
