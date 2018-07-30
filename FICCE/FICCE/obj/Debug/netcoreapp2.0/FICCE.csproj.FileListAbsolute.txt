@@ -5,7 +5,6 @@ C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.dll
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.pdb
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csprojResolveAssemblyReference.cache
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csproj.CoreCompileInputs.cache
-C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfoInputs.cache
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfo.cs
 C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
