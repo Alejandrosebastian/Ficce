@@ -10,7 +10,7 @@ namespace FICCE.Models
 {
     public class Tipoempresa
     {
-         
+        
 
         public int TipoempresaId { get; set; }
         public string  Nombre { get; set; }
