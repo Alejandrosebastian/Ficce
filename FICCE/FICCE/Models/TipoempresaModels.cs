@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using FICCE.Data;
+
 using FICCE.Models;
+
 
 namespace FICCE.Models
 {
