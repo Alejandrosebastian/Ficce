@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using FICCE.Data;
-
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
+
 
 
 namespace FICCE.Models
@@ -17,7 +17,7 @@ namespace FICCE.Models
         {
             _contexto = contexto;
         }
-        public List<IdentityError> ModeloGuardatipoempres(string Detalle, string Nombre)
+        public List<IdentityError> ModeloGuardatipoempresa(string Detalle, string Nombre)
         {
             List<IdentityError> lista = new List<IdentityError>();
             IdentityError datos = new IdentityError();

@@ -4,38 +4,72 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tipo empresas</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoTipoempresa">Nuevo tipo empresa</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Detalle)
-                </th>
-            <th></th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Detalle
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalle)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TipoempresaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TipoempresaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TipoempresaId">Delete</a>
-            </td>
-        </tr>
-}
+
+        
+
     </tbody>
 </table>
+
+<div class="modal fade" id="IngresoTipoempresa" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Sexo
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Ingrese un nuevo tipo empresa
+                        </label>
+                        <input id="sexo" name="sexo" data-toggle="tooltip"
+                               class="form-control" />
+                        <input id="sexoid" name="sexoid" hidden />
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="Guardatipoempresa()">Guardar</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -16,3 +16,4 @@ C:\Users\elmer\Desktop\examen\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.As
 C:\Users\elmer\Desktop\examen\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfo.cs
 C:\Users\elmer\Desktop\examen\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
 C:\Users\elmer\Desktop\examen\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.pdb
+C:\Users\DELL\source\repos\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

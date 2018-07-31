@@ -41,6 +41,22 @@ var grabaEdificio = () => {
     var graba = new ClaseEdificio(evento,nombre,ubicacion,'', accion);
     graba.GuardarEdificio(id);
 }
+var grabaTipoempresa = () => {
+    var Nombre = document.getElementById('Nombre').value;
+    var Detalle = docuement.getElementById('Detalle').valuel;
+    var TipoempresaId = document.getElementById('TipoempresaId').valuel;
+    var accion = 'Tipoempresa/Controladorguardatipoempresa';
+    var graba = new = Clasetipoempresa(Nombre, Detalle, accion);
+    if (TipoempresaId == '') {
+        TipoempresaId = '0';
+        var accion = 'Tipoempresa/Controladorguardatipoempresa';
+    } else {
+        var accion = 'Tipoempresa/Controladorguardatipoempresa';
+    }
+    var graba = new Clasetipoempresa(Nombre, Detalle, accion);
+    graba.grabaTipoempresa(TipoempresaId);
+
+}
 
 var ListaEdificio = () => {
     var accion = 'Edificios/ControladorListaEdificio';

@@ -14,12 +14,18 @@ namespace FICCE.Controllers
     public class TipoempresasController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private Tipoempresa clasetipoempresa;
+        private TipoempresaModels clasetipoempresa;
 
         public TipoempresasController(ApplicationDbContext context)
         {
             _context = context;
-            clasetipoempresa = new Tipoempresa(context);
+            clasetipoempresa = new TipoempresaModels(context);
+        }
+
+        public List<IdentityError> Controladorguardatipoempresa(string Detalle, string Nombre)
+        {
+
+            return clasetipoempresa.ModeloGuardatipoempresa(Detalle, Nombre);
         }
 
         // GET: Tipoempresas
@@ -28,11 +34,7 @@ namespace FICCE.Controllers
             return View(await _context.Tipoempresa.ToListAsync());
             
         }
-        public List<IdentityError> Controladorguardatipoempresa(string Detalle, string Nombre)
-        {
-
-            return clasetipoempresa.ModeloGuardatipoempres(Detalle,Nombre);
-        }
+    
 
         // GET: Tipoempresas/Details/5
         public async Task<IActionResult> Details(int? id)
