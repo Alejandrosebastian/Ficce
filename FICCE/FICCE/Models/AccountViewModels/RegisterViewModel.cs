@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using FICCE.Data;
 
 namespace FICCE.Models.AccountViewModels
 {
@@ -23,5 +25,31 @@ namespace FICCE.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Roles de Usuario")]
+            [UIHint("List")]
+
+        public List<SelectListItem> Roles { get; set; }
+        public string Rol { get; set; }
+        public RegisterViewModel()
+        {
+            Roles = new List<SelectListItem>();
+        }
+        public void obtenerRoles(ApplicationDbContext _context)
+        {
+            var roles = (from r in _context.identityRole select r).ToList();
+            //var listaRoles = roles.ToList();
+            foreach (var item in roles)
+            {
+                Roles.Add(new SelectListItem()
+                {
+                    Value = item.Id,
+                    Text = item.Name
+                });
+            }
+        }
     }
 }

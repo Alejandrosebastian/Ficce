@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Data
 {
@@ -27,6 +28,7 @@ namespace FICCE.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
+        public DbSet<IdentityRole> identityRole{ get; set; }
         public DbSet<FICCE.Models.Empleado> Empleado { get; set; }
 
         public DbSet<FICCE.Models.Estantes> Estantes { get; set; }
