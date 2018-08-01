@@ -24,6 +24,7 @@ $().ready(() => {
     // listaClientes(1,'null');
     ListaEdificio();
     ListaPlanta();
+    ListaEvento();
     //SiteListaIndex(1);
 });
 var grabaEdificio = () => {
@@ -99,6 +100,7 @@ var Impresion = () => {
 
 var listaestantes = () => {
     var accion = 'Estantes/'
+}
 
 var grabaEvento = () => {
     var ciudad = document.getElementById('ciudad').value;
@@ -124,7 +126,7 @@ var ListaEvento = () => {
     var sexo = new ClaseEvento('', '', '', '', '', accion);
     sexo.ListadeEvento();
 }
-var CargaEdificio = (id) => {
+var CargaEvento = (id) => {
     var accion = 'Eventos/ControladorUnEvento';
     var unsexo = new ClaseEvento('', '', '', '', '', accion);
     unsexo.CargarEvento(id);
@@ -209,7 +211,7 @@ var grabaEmpresa = () => {
     graba.GuardarEmpresa(id);
 }
 
-var ListaEdificio = () => {
+var ListaEmpresa = () => {
     var accion = 'Empresas/ControladorListaEmpresa';
     var sexo = new ClaseEmpresa('', '', '', '', '', '', '', '', '', accion);
     sexo.ListadeEmpresa();
