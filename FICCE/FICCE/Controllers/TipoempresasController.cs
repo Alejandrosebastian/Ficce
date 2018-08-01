@@ -22,12 +22,15 @@ namespace FICCE.Controllers
             clasetipoempresa = new TipoempresaModels(context);
         }
 
-        public List<IdentityError> Controladorguardatipoempresa(string Detalle, string Nombre)
+        public List<IdentityError> Controladorguardatipoempresa(string Nombre, string Detalle)
         {
 
             return clasetipoempresa.ModeloGuardatipoempresa(Detalle, Nombre);
         }
-
+        public List<object[]> Controladorlistatipo()
+        {
+            return clasetipoempresa.ModeloListatipoempresa();
+        }
         // GET: Tipoempresas
         public async Task<IActionResult> Index()
         {

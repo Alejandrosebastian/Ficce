@@ -13,12 +13,13 @@ namespace FICCE.Controllers
     public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public EventosController(ApplicationDbContext context)
+       
+            public EventosController(ApplicationDbContext context)
         {
             _context = context;
+           
         }
-
+       
         // GET: Eventos
         public async Task<IActionResult> Index()
         {

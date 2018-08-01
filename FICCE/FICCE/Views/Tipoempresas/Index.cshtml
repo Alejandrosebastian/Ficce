@@ -1,8 +1,4 @@
-﻿@model IEnumerable<FICCE.Models.Tipoempresa>
-
-@{
-    ViewData["Title"] = "Index";
-}
+﻿
 
 <h2>Tipo empresas</h2>
 
@@ -26,7 +22,7 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="listatipoempresa">
 
         
 
@@ -44,7 +40,7 @@
                 </button>
                 <h4 class="modal-title"
                     id="EtiquetaModal">
-                    Sexo
+                    Tipo empresa
                 </h4>
             </div>
             <div class="modal-body">
@@ -53,15 +49,22 @@
                         <label class="control-label">
                             Ingrese un nuevo tipo empresa
                         </label>
-                        <input id="sexo" name="sexo" data-toggle="tooltip"
-                               class="form-control" />
-                        <input id="sexoid" name="sexoid" hidden />
+                        <div class="form-group">
+                            <label class="control-label">Nombre</label>
+                            <input id="Nombre" name="Nombre" class="form-control" placeholder="ingrese el nombre " />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Detalle</label>
+                            <input id="Detalle" name="Detalle" class="form-control" placeholder="ingrese algun detalle" />
+                        </div>
+                        <input id="TipoempresaId" name="TipoempresaId" hidden />
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">
                                 Cerrar
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="Guardatipoempresa()">Guardar</button>
+                            <button type="button" class="btn btn-primary" onclick="grabaTipoempresa()">
+                            Guardar</button>
 
                         </div>
                     </div>

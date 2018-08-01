@@ -17,6 +17,10 @@ namespace FICCE.Models
         [Display(Name = "Escriba el lagor del estante")]
         [StringLength(10, MinimumLength = 1, ErrorMessage = "El largo del estante debe estar entre 1 y 10 caracteres")]
         public int Largo { get; set; }
+        [Required(ErrorMessage = "Campo Requerido")]
+        [Display(Name = "Escriba la ubicacion del estante")]
+        [StringLength(10, MinimumLength = 1, ErrorMessage = "La ubicacion del estante debe estar entre 1 y 100 caracteres")]
+        public string Ubicacion { get; set; }
         //Relaciones
         public int EventoId { get; set; }
         public Evento Evento { get; set; }

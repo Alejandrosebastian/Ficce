@@ -3,7 +3,8 @@
 var Guardaestante = () => {
     var Ancho = document.getElementById('Ancho').value;
     var Largo = docuement.getElementById('Largo').value;
-    var Evento = document.getElementById('Evento').value;
+    var Eventos = document.getElementById('EventoId');
+    var Evento = Eventos.options[formulas.selectdIndex].value;
     var Planta = document.getElementById('Planta').valuel;
     var EstanteId = docuemnt.getElementById('Id').valuel;
 
@@ -43,19 +44,24 @@ var grabaEdificio = () => {
 }
 var grabaTipoempresa = () => {
     var Nombre = document.getElementById('Nombre').value;
-    var Detalle = docuement.getElementById('Detalle').valuel;
-    var TipoempresaId = document.getElementById('TipoempresaId').valuel;
+    var Detalle = document.getElementById('Detalle').value;
+    var TipoempresaId = document.getElementById('TipoempresaId').value;
     var accion = 'Tipoempresa/Controladorguardatipoempresa';
-    var graba = new = Clasetipoempresa(Nombre, Detalle, accion);
+    var graba = new  Clasetipoempresa(Nombre, Detalle, accion);
     if (TipoempresaId == '') {
         TipoempresaId = '0';
-        var accion = 'Tipoempresa/Controladorguardatipoempresa';
+        var accion = 'Tipoempresas/Controladorguardatipoempresa';
     } else {
-        var accion = 'Tipoempresa/Controladorguardatipoempresa';
+        var accion = 'Tipoempresas/Controladorguardatipoempresa';
     }
     var graba = new Clasetipoempresa(Nombre, Detalle, accion);
-    graba.grabaTipoempresa(TipoempresaId);
+    graba.Guardatipoempresa(TipoempresaId);
 
+}
+var Listatipoempresa = () => {
+    var accion = 'Tipoempresas/Controladorlistatipo';
+    var Estantes = new Clasetipoempresa('', '', accion);
+    Estantes.listatipoempresa();
 }
 
 var ListaEdificio = () => {
@@ -88,6 +94,9 @@ var Impresion = () => {
     var contenidooriginial = document.body.innerHTML;
     document.body.innerHTML = contenido;
     window.print();
+}
+var listaestantes = () => {
+    var accion = 'Estantes/'
 }
 
 

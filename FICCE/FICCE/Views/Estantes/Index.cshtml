@@ -1,23 +1,22 @@
-﻿@model IEnumerable<FICCE.Models.Estantes>
-
-@{
-    ViewData["Title"] = "Index";
-}
+﻿
 
 <h2>Index</h2>
 
 <p>
-    <a href="#" data-toggle="modal" data-target="#IngresoEstante">Ingreso Estantes</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoEstante" onclick="">Nuevo estante</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    Ancho
-                </th>
-                <th>
-                    Largo
-                </th>
+            <th>
+               Largo
+            </th>
+            <th>
+              Ancho
+            </th>
+            <th>
+                Ubicacion
+            </th>
             <th>
                 Evento
             </th>
@@ -27,54 +26,66 @@
             <th></th>
         </tr>
     </thead>
-    <tbody id="ListaEstante">
-
-    </tbody>
+    <tbody></tbody>
 </table>
-<div class="modal fade" id="IngresoInmueble" tabindex="-1"
+<div class="modal fade" id="IngresoEstante" tabindex="-1"
      role="dialog" aria-labelledby="EtiquetaModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                @*<button type="button" cl@{
-                            ass="close"
-                            data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>*@
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title"
                     id="EtiquetaModal">
-                    Inmuebles
+                    Tipo empresa
                 </h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label class="control-label">Ancho</label>
-                        <input id="Ancho" name="Ancho" class="form-control" placeholder="ingrese el ancho" />
+                        <label class="control-label">
+                            Ingrese un nuevo Estante
+                        </label>
+                        <div class="form-group">
+                            <label class="control-label">Largo</label>
+                            <input id="Largo" name="Largo" class="form-control" placeholder="ingrese el nombre " />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ancho</label>
+                            <input id="Ancho" name="Ancho" class="form-control" placeholder="ingrese algun detalle" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ubicacion</label>
+                            <input id="Ubicacion" name="Ubicacion" class="form-control" placeholder="ingrese algun detalle" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Evento</label>
+                            <select id="EventoId" name="EventoId" required class="form-control">
+                                <option value="0">Seleccione el Personal asignado a esta operación</option>
+                            </select>
+                            <br />
+                            <span id="mensajeper" class="alert alert-danger hidden">Seleccione al personal asignado</span>
+                        </div>
+                        <input id="TipoempresaId" name="TipoempresaId" hidden />
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">
+                                Cerrar
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="grabaTipoempresa()">
+                                Guardar
+                            </button>
+
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Largo</label>
-                        <input id="Largo" name="Largo" class="form-control" placeholder="ingrese el largo" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Evento</label>
-                        <input id="Evento" name="Evento" class="form-control" placeholder="el evento es en" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Planta</label>
-                        <input id="Planta" name="Planta" class="form-control" placeholder="ingrese en la planta" />
-                    </div>
-                    
-                    <input id="id" name="id" hidden />
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-toggle="tooltip"
-                        title="con este boton usted guradara un nuevo cliente" onclick="Guardaestante()">
-                    Guardar
-                </button>
             </div>
         </div>
     </div>
+
+
+
 </div>
+

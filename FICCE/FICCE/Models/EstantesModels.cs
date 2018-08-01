@@ -15,7 +15,11 @@ namespace FICCE.Models
         {
             _contexo = contexto;
         }
-        public List<IdentityError> ClaseGurdarEstantes(int Ancho, int Largo, int Evento, int Planta)
+        public List<Evento> ClaseModeloEstantes()
+        {
+            return _contexo.Evento.OrderBy(e => e.año).ToList();
+        }
+        public List<IdentityError> ClaseGurdarEstantes(int Ancho, int Largo,string Ubicacion, int Evento, int Planta)
         {
             List<IdentityError> lista = new List<IdentityError>();
             IdentityError dato = new IdentityError();
@@ -23,6 +27,7 @@ namespace FICCE.Models
             {
                 Ancho = Ancho,
                 Largo = Largo,
+                Ubicacion = Ubicacion,
                 EventoId = Evento,
                 PlantaId = Planta
             };
@@ -59,15 +64,18 @@ namespace FICCE.Models
                              e.Largo,
                              e.Evento,
                              e.Planta,
-                             e.EstantesId
+                             e.EstantesId,
+                             e.Ubicacion
                          }).OrderBy(e => e.Ancho).ToList();
             foreach( var item in estan)
             {
                 html +="<tr class ='info>"+
                     "<td>"+ item.Ancho+ "</td>" +
                     "<td>" + item.Largo + "</td>" +
+                    "<td>" + item.Ubicacion + "</td>" +
                     "<td>" + item.Evento + "</td>" +
                     "<td>" + item.Planta+ "</td>" +
+                    
                      "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoInmueble' onclick='CargaEstante(" + item.EstantesId + ")'>Editar</a>"+
                      "</td></tr>";
             }

@@ -17,14 +17,14 @@ namespace FICCE.Models
         {
             _contexto = contexto;
         }
-        public List<IdentityError> ModeloGuardatipoempresa(string Detalle, string Nombre)
+        public List<IdentityError> ModeloGuardatipoempresa(string Nombre, string Detalle)
         {
             List<IdentityError> lista = new List<IdentityError>();
             IdentityError datos = new IdentityError();
             var objetotipoempre = new Tipoempresa
             {
-                Detalle = Detalle,
-                Nombre = Nombre
+                Nombre = Nombre,
+                Detalle = Detalle                
             };
             try
             {
@@ -57,7 +57,8 @@ namespace FICCE.Models
             {
                 html +="<tr>"+
                     "<td>"+ item.Detalle +"</td>"+
-                    "<td>" + item.Nombre + "</td>" + "data-toggle='modal'  data-target='#IngresoSexo'" +
+                    "<td>" + item.Nombre + "</td>" +
+                    "data-toggle='modal'  data-target='#IngresoTipoempresa'" +
                     "onclick='Cargasexo(" + item.TipoempresaId + ")'>" +
                      "</td><tr>";
 

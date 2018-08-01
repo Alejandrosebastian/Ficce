@@ -11,12 +11,17 @@ namespace FICCE.Models
     public class EdificioModels
     {
         private ApplicationDbContext _contexto;
+        private Evento claselistaevento;
 
         public EdificioModels(ApplicationDbContext contexto)
         {
             _contexto = contexto;
+            claselistaevento = new Evento();
         }
-
+        public List<Evento> ClaselistaEvento()
+        {
+            return _contexto.Evento.OrderBy(e => e.año).ToList();
+        }
         public List<IdentityError> ModeloGrabaEdificio(int evento,string nombre,string ubicacion)
         {
             List<IdentityError> Lista = new List<IdentityError>();
