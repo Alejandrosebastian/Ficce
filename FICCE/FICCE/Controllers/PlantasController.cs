@@ -7,154 +7,58 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
     public class PlantasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private PlantaModels clasePlanta;
 
         public PlantasController(ApplicationDbContext context)
         {
             _context = context;
+            clasePlanta = new PlantaModels(context);
         }
 
         // GET: Plantas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Planta.Include(p => p.Edificio);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Planta.Include(p => p.Edificio);
+            return View(await _context.Planta.ToListAsync());
+
         }
 
-        // GET: Plantas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaPlanta(int edificio, string nombre)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var planta = await _context.Planta
-                .Include(p => p.Edificio)
-                .SingleOrDefaultAsync(m => m.PlantaId == id);
-            if (planta == null)
-            {
-                return NotFound();
-            }
-
-            return View(planta);
+            return clasePlanta.ModeloGrabaPlanta(edificio, nombre);
         }
 
-        // GET: Plantas/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaPlanta()
         {
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre");
-            return View();
+            return clasePlanta.ModeloListaPlanta();
+        }
+        public List<Planta> ControladorUnPlanta(int id)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var respuesta = (from s in _context.Planta
+                             where s.PlantaId == id
+                             select s).ToList();
+            return respuesta;
         }
 
-        // POST: Plantas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlantaId,Nombre,EdificioId")] Planta planta)
+        public List<IdentityError> ControladorEditaPlanta(int id, int edificio, string nombre)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(planta);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
-            return View(planta);
+            return clasePlanta.ModeloEditarPlanta(id, edificio, nombre);
         }
-
-        // GET: Plantas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarPlanta(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var planta = await _context.Planta.SingleOrDefaultAsync(m => m.PlantaId == id);
-            if (planta == null)
-            {
-                return NotFound();
-            }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
-            return View(planta);
+            return clasePlanta.ModeloEliminarPlanta(id);
         }
-
-        // POST: Plantas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlantaId,Nombre,EdificioId")] Planta planta)
+        public List<object[]> ContronladorImprimirPlanta()
         {
-            if (id != planta.PlantaId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(planta);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PlantaExists(planta.PlantaId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EdificioId"] = new SelectList(_context.Edificio, "EdificioId", "Nombre", planta.EdificioId);
-            return View(planta);
-        }
-
-        // GET: Plantas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var planta = await _context.Planta
-                .Include(p => p.Edificio)
-                .SingleOrDefaultAsync(m => m.PlantaId == id);
-            if (planta == null)
-            {
-                return NotFound();
-            }
-
-            return View(planta);
-        }
-
-        // POST: Plantas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var planta = await _context.Planta.SingleOrDefaultAsync(m => m.PlantaId == id);
-            _context.Planta.Remove(planta);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool PlantaExists(int id)
-        {
-            return _context.Planta.Any(e => e.PlantaId == id);
+            return clasePlanta.ModeloImpresion();
         }
     }
 }
