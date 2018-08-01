@@ -7,161 +7,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
-    public class EstantesController : Controller
+    public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private EstantesModels claseestante;
-        public EstantesController(ApplicationDbContext context)
+        private EventoModels claseEvento;
+
+        public EventosController(ApplicationDbContext context)
         {
             _context = context;
-            claseestante = new EstantesModels(context);
+            claseEvento = new EventoModels(context);
         }
 
-        // GET: Estantes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Estantes.Include(e => e.Evento).Include(e => e.Planta);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Evento.ToListAsync());
         }
 
-        // GET: Estantes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaEvento(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var estantes = await _context.Estantes
-                .Include(e => e.Evento)
-                .Include(e => e.Planta)
-                .SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
-            {
-                return NotFound();
-            }
-
-            return View(estantes);
+            return claseEvento.ModeloGrabaEvento(ciudad, fecha_ini, fecha_fin, valor);
         }
 
-        // GET: Estantes/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaEvento()
         {
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId");
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre");
-            return View();
+            return claseEvento.ModeloListaEvento();
+        }
+        public List<Evento> ControladorUnEvento(int id)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var res = (from s in _context.Evento
+                       where s.EventoId == id
+                       select s).ToList();
+            return res;
         }
 
-        // POST: Estantes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EstantesId,Ancho,Largo,Ubicacion,EventoId,PlantaId")] Estantes estantes)
+        public List<IdentityError> ControladorEditaEvento(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(estantes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
+            return claseEvento.ModeloEditarEvento(id, ciudad, fecha_ini, fecha_fin, valor);
         }
-
-        // GET: Estantes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarEvento(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var estantes = await _context.Estantes.SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
-            {
-                return NotFound();
-            }
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
+            return claseEvento.ModeloEliminarEvento(id);
         }
-
-        // POST: Estantes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EstantesId,Ancho,Largo,Ubicacion,EventoId,PlantaId")] Estantes estantes)
+        public List<object[]> ContronladorImprimirEvento()
         {
-            if (id != estantes.EstantesId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(estantes);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EstantesExists(estantes.EstantesId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EventoId"] = new SelectList(_context.Evento, "EventoId", "EventoId", estantes.EventoId);
-            ViewData["PlantaId"] = new SelectList(_context.Planta, "PlantaId", "Nombre", estantes.PlantaId);
-            return View(estantes);
-        }
-
-        // GET: Estantes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var estantes = await _context.Estantes
-                .Include(e => e.Evento)
-                .Include(e => e.Planta)
-                .SingleOrDefaultAsync(m => m.EstantesId == id);
-            if (estantes == null)
-            {
-                return NotFound();
-            }
-
-            return View(estantes);
-        }
-
-        // POST: Estantes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var estantes = await _context.Estantes.SingleOrDefaultAsync(m => m.EstantesId == id);
-            _context.Estantes.Remove(estantes);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EstantesExists(int id)
-        {
-            return _context.Estantes.Any(e => e.EstantesId == id);
+            return claseEvento.ModeloImpresion();
         }
     }
 }
+

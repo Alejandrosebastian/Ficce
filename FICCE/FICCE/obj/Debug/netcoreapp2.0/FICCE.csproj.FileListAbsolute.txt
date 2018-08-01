@@ -29,3 +29,15 @@ C:\Users\DELL\Documents\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.d
 C:\Users\DELL\Documents\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.pdb
 C:\Users\DELL\Documents\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
 C:\Users\DELL\Documents\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.pdb
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.deps.json
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.runtimeconfig.json
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.runtimeconfig.dev.json
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.dll
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\bin\Debug\netcoreapp2.0\FICCE.pdb
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csprojResolveAssemblyReference.cache
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.csproj.CoreCompileInputs.cache
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfoInputs.cache
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.AssemblyInfo.cs
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.dll
+C:\Users\milto\OneDrive\Documentos\GitHub\Ficce\FICCE\FICCE\obj\Debug\netcoreapp2.0\FICCE.pdb
