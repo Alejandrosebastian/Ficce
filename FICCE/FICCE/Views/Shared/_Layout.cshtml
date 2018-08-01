@@ -31,8 +31,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Eventos" asp-action="Index">Evento</a></li>
                     <li><a asp-area="" asp-controller="Edificios" asp-action="Index">Edificio</a></li>
+                    <li><a asp-area="" asp-controller="Plantas" asp-action="Index">Planta</a></li>
+                    <li><a asp-area="" asp-controller="Empresas" asp-action="Index">Empresa</a></li>
+                    <li><a asp-area="" asp-controller="Empleados" asp-action="Index">Empleado</a></li>
+                    <li><a asp-area="" asp-controller="Compras" asp-action="Index">Compra</a></li>
                     <li><a asp-area="" asp-controller="Tipoempresas" asp-action="Index">Tipo empresas</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -50,8 +54,12 @@
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/Evento.js" asp-append-version="true"></script>
         <script src="~/js/Edificio.js" asp-append-version="true"></script>
-        <script src="~/js/Tipoempresa.js" asp-append-version="true"></script>
+        <script src="~/js/Planta.js" asp-append-version="true"></script>
+        <script src="~/js/Empresa.js" asp-append-version="true"></script>
+        <script src="~/js/Empleado.js" asp-append-version="true"></script>
+        <script src="~/js/Compra.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
