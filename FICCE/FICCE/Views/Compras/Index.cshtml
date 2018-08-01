@@ -1,47 +1,169 @@
-﻿@model IEnumerable<FICCE.Models.Compra>
+﻿@*@model IEnumerable<FICCE.Models.Edificio>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ubicacion)
+                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Evento)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evento.EventoId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EdificioId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EdificioId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EdificioId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Compras";
 }
 
-<h2>Index</h2>
+<h2>Lista de compra</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoCompra">Ingreso Compra</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Activo)
-                </th>
+            <th>Activo</th>
+            <th>Estante</th>
+            <th>empresa</th>
             <th>
-                @Html.DisplayNameFor(model => model.Empresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estantes)
+                imagen
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estantes.EstantesId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CompraId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CompraId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompraId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="ListaCompra"></tbody>
 </table>
+
+
+
+
+
+
+
+<div class="modal fade" id="IngresoCompra" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Edificios
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <select id="activo" name="activo" class="form-control">
+                            <option value=" 0">Reservado</option>
+                            <option value=" 1">Comprado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Estante</label>
+                        <input id="estante" name="estante" class="form-control" placeholder="ingrese del id del estante" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Empresa</label>
+                        <input id="empresa" name="empresa" class="form-control" placeholder="ingrese el id del empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">imagen</label>
+                        <input id="imagen" name="imagen" class="form-control" placeholder="ingrese el ubicasion de la imagen" />
+                    </div>
+                    <input id="id" name="id" hidden />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="grabaCompra()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ImpresionCompra" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document" id="areaImprimir">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Reportes de Edificios
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr class="danger">
+                                <td>Id Compra</td>
+                                <td>Estado</td>
+                                <td>ID Estate</td>
+                                <td>ID Empresa</td>
+                                <td>Imagen</td>
+                            </tr>
+                        </thead>
+                        <tbody id="CuerpoImpresion"> </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="Impresion()">
+                    Imprimir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

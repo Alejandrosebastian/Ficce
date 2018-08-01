@@ -8,29 +8,29 @@ using FICCE.Models;
 
 namespace FICCE.Models
 {
-    public class EventoModels
+    public class CompraModels
     {
         private ApplicationDbContext _contexto;
 
-        public EventoModels(ApplicationDbContext contexto)
+        public CompraModels(ApplicationDbContext contexto)
         {
             _contexto = contexto;
         }
 
-        public List<IdentityError> ModeloGrabaEvento(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ModeloGrabaCompra(Boolean activo , int estante, int empresa, string imagen)
         {
             List<IdentityError> Lista = new List<IdentityError>();
             IdentityError dato = new IdentityError();
-            var Objetoedificio = new Evento
+            var Objetocompra = new Compra
             {
-                Ciudad = ciudad,
-                dia_fin = fecha_ini,
-                dia_inicio = fecha_ini,
-                precio_estan = valor
+                Activo = activo,
+                EstantesId = estante,
+                EmpresaId = empresa,
+                imagen = imagen
             };
             try
             {
-                _contexto.Evento.Add(Objetoedificio);
+                _contexto.Compra.Add(Objetocompra);
                 _contexto.SaveChanges();
                 dato = new IdentityError
                 {
@@ -50,30 +50,31 @@ namespace FICCE.Models
             return Lista;
 
         }
-        public List<object[]> ModeloListaEvento()
+        public List<object[]> ModeloListaCompra()
         {
             string resultado = "";
             List<object[]> listaresultado = new List<object[]>();
-            var evento = (from e in _contexto.Evento
+            var compra = (from c in _contexto.Compra
+                            join em in _contexto.Empresa on c.EmpresaId equals em.EmpresaId
                             select new
                             {
-                                e.Ciudad,
-                                e.dia_inicio,
-                                e.dia_fin,
-                                e.precio_estan,
-                                e.EventoId
-                            }).OrderBy(e => e.Ciudad).ToList();
-            foreach (var item in evento)
+                                c.Activo,
+                                c.CompraId,
+                                c.EstantesId,
+                                em.Nombre,
+                                c.imagen
+                            }).OrderBy(c => c.CompraId).ToList();
+            foreach (var item in compra)
             {
                 resultado += "<tr>" +
-                    "<td>" + item.Ciudad + "</td>" +
-                    "<td>" + item.dia_inicio + "</td>" +
-                    "<td>" + item.dia_fin + "</td>" +
-                    "<td>" + item.precio_estan + "</td>" +
+                    "<td>" + item.Activo + "</td>" +
+                    "<td>" + item.EstantesId + "</td>" +
+                    "<td>" + item.Nombre + "</td>" +
+                    "<td>" + item.imagen + "</td>" +
                     "<td>" +
-                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEvento' onclick='CargaEvento(" + item.EventoId + ")'>Editar</a>" +
-                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEvento' onclick='CargaParaImpresionEvento();'>Imprimir</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaEvento(" + item.EventoId + ")'>Eliminar</a>" +
+                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoCompra' onclick='CargaCompra(" + item.CompraId + ")'>Editar</a>" +
+                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionCompra' onclick='CargaParaCompra();'>Imprimir</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaCompra(" + item.CompraId + ")'>Eliminar</a>" +
                     "</td>"
                     + "</tr>";
             }
@@ -138,21 +139,21 @@ namespace FICCE.Models
         //    return ListaSexos;
         //}
 
-        public List<IdentityError> ModeloEditarEvento(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ModeloEditarCompra(int id,Boolean activo , int estante, int empresa, string imagen)
         {
             List<IdentityError> ListaEditar = new List<IdentityError>();
             IdentityError regresa = new IdentityError();
-            var evento = new Evento
+            var compra = new Compra
             {
-                Ciudad = ciudad,
-                dia_fin = fecha_fin,
-                dia_inicio = fecha_ini,
-                precio_estan = valor,
-                EventoId = id
+                Activo = activo, 
+                EstantesId = estante,
+                EmpresaId = empresa,
+                imagen = imagen,
+                CompraId = id
             };
             try
             {
-                _contexto.Evento.Update(evento);
+                _contexto.Compra.Update(compra);
                 _contexto.SaveChanges();
                 regresa = new IdentityError
                 {
@@ -172,14 +173,14 @@ namespace FICCE.Models
             return ListaEditar;
         }
 
-        public List<IdentityError> ModeloEliminarEvento(int id)
+        public List<IdentityError> ModeloEliminarCompra(int id)
         {
             List<IdentityError> ListaEliminar = new List<IdentityError>();
             IdentityError dato = new IdentityError();
-            var evento = new Evento { EventoId = id };
+            var compra = new Compra { CompraId = id };
             try
             {
-                _contexto.Evento.Remove(evento);
+                _contexto.Compra.Remove(compra);
                 _contexto.SaveChanges();
                 dato = new IdentityError
                 {
@@ -202,10 +203,10 @@ namespace FICCE.Models
         {
             List<object[]> lista = new List<object[]>();
             string dato = "";
-            var respuesta = _contexto.Evento.OrderBy(s => s.Ciudad).ToList();
+            var respuesta = _contexto.Compra.OrderBy(s => s.CompraId).ToList();
             foreach (var item in respuesta)
             {
-                dato += "<tr class='info'><td>" + item.Ciudad + "</td> <td>" + item.dia_inicio + "</td><td>" + item.dia_fin + "</td><td>"+ item.precio_estan+"</td></tr>";
+                dato += "<tr class='info'><td>" + item.Activo + "</td> <td>" + item.CompraId + "</td> <td>" + item.EstantesId + "</td><td>" + item.EmpresaId + "</td><td>" + item.imagen + "</td></tr>";
             }
             object[] objeto = { dato };
             lista.Add(objeto);
