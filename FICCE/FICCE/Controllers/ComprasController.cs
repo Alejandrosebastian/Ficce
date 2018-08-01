@@ -7,160 +7,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
     public class ComprasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private CompraModels claseCompra;
 
         public ComprasController(ApplicationDbContext context)
         {
             _context = context;
+            claseCompra = new CompraModels(context);
         }
 
-        // GET: Compras
+        // GET: Sexos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Compra.Include(c => c.Empresa).Include(c => c.Estantes);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Compra.ToListAsync());
         }
 
-        // GET: Compras/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaCompra(Boolean activo, int estante, int empresa, string imagen)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var compra = await _context.Compra
-                .Include(c => c.Empresa)
-                .Include(c => c.Estantes)
-                .SingleOrDefaultAsync(m => m.CompraId == id);
-            if (compra == null)
-            {
-                return NotFound();
-            }
-
-            return View(compra);
+            return claseCompra.ModeloGrabaCompra(activo, estante, empresa, imagen);
         }
 
-        // GET: Compras/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaCompra()
         {
-            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre");
-            ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId");
-            return View();
+            return claseCompra.ModeloListaCompra();
+        }
+        public List<Edificio> ControladorUnEdificio(int id)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var respuesta = (from s in _context.Edificio
+                             where s.EdificioId == id
+                             select s).ToList();
+            return respuesta;
         }
 
-        // POST: Compras/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompraId,Activo,EstantesId,EmpresaId")] Compra compra)
+        public List<IdentityError> ControladorEditaCompra(int id, Boolean activo, int estante, int empresa, string imagen)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(compra);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
-            ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            return View(compra);
+            return claseCompra.ModeloEditarCompra(id, activo, estante, empresa, imagen);
         }
-
-        // GET: Compras/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarCompra(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var compra = await _context.Compra.SingleOrDefaultAsync(m => m.CompraId == id);
-            if (compra == null)
-            {
-                return NotFound();
-            }
-            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
-            ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            return View(compra);
+            return claseCompra.ModeloEliminarCompra(id);
         }
-
-        // POST: Compras/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompraId,Activo,EstantesId,EmpresaId")] Compra compra)
+        public List<object[]> ContronladorImprimirCompra()
         {
-            if (id != compra.CompraId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(compra);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompraExists(compra.CompraId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["EmpresaId"] = new SelectList(_context.Set<Empresa>(), "EmpresaId", "Nombre", compra.EmpresaId);
-            ViewData["EstantesId"] = new SelectList(_context.Estantes, "EstantesId", "EstantesId", compra.EstantesId);
-            return View(compra);
-        }
-
-        // GET: Compras/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var compra = await _context.Compra
-                .Include(c => c.Empresa)
-                .Include(c => c.Estantes)
-                .SingleOrDefaultAsync(m => m.CompraId == id);
-            if (compra == null)
-            {
-                return NotFound();
-            }
-
-            return View(compra);
-        }
-
-        // POST: Compras/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var compra = await _context.Compra.SingleOrDefaultAsync(m => m.CompraId == id);
-            _context.Compra.Remove(compra);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CompraExists(int id)
-        {
-            return _context.Compra.Any(e => e.CompraId == id);
+            return claseCompra.ModeloImpresion();
         }
     }
 }

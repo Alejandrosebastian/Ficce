@@ -7,154 +7,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
     public class EmpresasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EmpresaModels claseEmpresa;
 
         public EmpresasController(ApplicationDbContext context)
         {
             _context = context;
+            claseEmpresa = new EmpresaModels(context);
         }
 
-        // GET: Empresas
+        // GET: Sexos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Empresa.Include(e => e.Tipoempresa);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Edificio.ToListAsync());
         }
 
-        // GET: Empresas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaEmpresa(int tipo, string nombre, string direccion, string correo, string persono, string contacto, string convencional, string extencion)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresa
-                .Include(e => e.Tipoempresa)
-                .SingleOrDefaultAsync(m => m.EmpresaId == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(empresa);
+            return claseEmpresa.ModeloGrabaEmpresa(tipo, nombre, direccion, correo, persono, contacto, convencional, extencion);
         }
 
-        // GET: Empresas/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaEmpresa()
         {
-            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId");
-            return View();
+            return claseEmpresa.ModeloListaEmpresa();
+        }
+        public List<Empresa> ControladorUnEmpresa(int id)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var respuesta = (from s in _context.Empresa
+                             where s.EmpresaId == id
+                             select s).ToList();
+            return respuesta;
         }
 
-        // POST: Empresas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpresaId,Nombre,direccion,correo,telefono_contacto,telefono_convencional,extenencion_telefono,persona_responsable,TipoempresaId")] Empresa empresa)
+        public List<IdentityError> ControladorEditaEmpresa(int id, int tipo, string nombre, string direccion, string correo, string persono, string contacto, string convencional, string extencion)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
-            return View(empresa);
+            return claseEmpresa.ModeloEditarEmpresa(id, tipo, nombre, direccion, correo, persono, contacto, convencional, extencion);
         }
-
-        // GET: Empresas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarEmpresa(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresa.SingleOrDefaultAsync(m => m.EmpresaId == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
-            return View(empresa);
+            return claseEmpresa.ModeloEliminarEmpresa(id);
         }
-
-        // POST: Empresas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmpresaId,Nombre,direccion,correo,telefono_contacto,telefono_convencional,extenencion_telefono,persona_responsable,TipoempresaId")] Empresa empresa)
+        public List<object[]> ContronladorImprimirEmpresa()
         {
-            if (id != empresa.EmpresaId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(empresa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmpresaExists(empresa.EmpresaId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["TipoempresaId"] = new SelectList(_context.Set<Tipoempresa>(), "TipoempresaId", "TipoempresaId", empresa.TipoempresaId);
-            return View(empresa);
-        }
-
-        // GET: Empresas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresa
-                .Include(e => e.Tipoempresa)
-                .SingleOrDefaultAsync(m => m.EmpresaId == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(empresa);
-        }
-
-        // POST: Empresas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var empresa = await _context.Empresa.SingleOrDefaultAsync(m => m.EmpresaId == id);
-            _context.Empresa.Remove(empresa);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EmpresaExists(int id)
-        {
-            return _context.Empresa.Any(e => e.EmpresaId == id);
+            return claseEmpresa.ModeloImpresion();
         }
     }
 }

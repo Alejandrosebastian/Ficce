@@ -8,29 +8,33 @@ using FICCE.Models;
 
 namespace FICCE.Models
 {
-    public class EventoModels
+    public class EmpresaModels
     {
         private ApplicationDbContext _contexto;
 
-        public EventoModels(ApplicationDbContext contexto)
+        public EmpresaModels(ApplicationDbContext contexto)
         {
             _contexto = contexto;
         }
 
-        public List<IdentityError> ModeloGrabaEvento(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ModeloGrabaEmpresa(int tipo, string nombre, string direccion,string correo,string persono,string contacto,string convencional, string extencion)
         {
             List<IdentityError> Lista = new List<IdentityError>();
             IdentityError dato = new IdentityError();
-            var Objetoedificio = new Evento
+            var Objetoempresa = new Empresa
             {
-                Ciudad = ciudad,
-                dia_fin = fecha_ini,
-                dia_inicio = fecha_ini,
-                precio_estan = valor
+                TipoempresaId = tipo,
+                Nombre = nombre,
+                direccion = direccion,
+                correo = correo,
+                persona_responsable = persono,
+                telefono_contacto = contacto,
+                telefono_convencional = convencional,
+                extenencion_telefono = extencion
             };
             try
             {
-                _contexto.Evento.Add(Objetoedificio);
+                _contexto.Empresa.Add(Objetoempresa);
                 _contexto.SaveChanges();
                 dato = new IdentityError
                 {
@@ -50,30 +54,39 @@ namespace FICCE.Models
             return Lista;
 
         }
-        public List<object[]> ModeloListaEvento()
+        public List<object[]> ModeloListaEmpresa()
         {
             string resultado = "";
             List<object[]> listaresultado = new List<object[]>();
-            var evento = (from e in _contexto.Evento
+            var empresa = (from e in _contexto.Empresa
+                            join t in _contexto.Tipoempresa on e.TipoempresaId equals t.TipoempresaId
                             select new
                             {
-                                e.Ciudad,
-                                e.dia_inicio,
-                                e.dia_fin,
-                                e.precio_estan,
-                                e.EventoId
-                            }).OrderBy(e => e.Ciudad).ToList();
-            foreach (var item in evento)
+                                e.EmpresaId,
+                                e.Nombre,
+                                e.direccion,
+                                e.correo,
+                                e.persona_responsable,
+                                e.telefono_contacto,
+                                e.extenencion_telefono,
+                                e.telefono_convencional,
+                                t.Detalle
+                            }).OrderBy(e => e.Nombre).ToList();
+            foreach (var item in empresa)
             {
                 resultado += "<tr>" +
-                    "<td>" + item.Ciudad + "</td>" +
-                    "<td>" + item.dia_inicio + "</td>" +
-                    "<td>" + item.dia_fin + "</td>" +
-                    "<td>" + item.precio_estan + "</td>" +
+                    "<td>" + item.Nombre + "</td>" +
+                    "<td>" + item.direccion + "</td>" +
+                    "<td>" + item.correo + "</td>" +
+                    "<td>" + item.persona_responsable + "</td>" +
+                    "<td>" + item.telefono_convencional + "</td>" +
+                    "<td>" + item.extenencion_telefono + "</td>" +
+                    "<td>" + item.telefono_contacto + "</td>" +
+                    "<td>" + item.Detalle + "</td>" +
                     "<td>" +
-                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEvento' onclick='CargaEvento(" + item.EventoId + ")'>Editar</a>" +
-                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEvento' onclick='CargaParaImpresionEvento();'>Imprimir</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaEvento(" + item.EventoId + ")'>Eliminar</a>" +
+                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEmpresa' onclick='CargaEmpresa(" + item.EmpresaId + ")'>Editar</a>" +
+                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEmpresa' onclick='CargaParaImpresionEmpresa();'>Imprimir</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaEdificio(" + item.EmpresaId + ")'>Eliminar</a>" +
                     "</td>"
                     + "</tr>";
             }
@@ -138,21 +151,25 @@ namespace FICCE.Models
         //    return ListaSexos;
         //}
 
-        public List<IdentityError> ModeloEditarEvento(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ModeloEditarEmpresa(int id, int tipo, string nombre, string direccion, string correo, string persono, string contacto, string convencional, string extencion)
         {
             List<IdentityError> ListaEditar = new List<IdentityError>();
             IdentityError regresa = new IdentityError();
-            var evento = new Evento
+            var empresa = new Empresa
             {
-                Ciudad = ciudad,
-                dia_fin = fecha_fin,
-                dia_inicio = fecha_ini,
-                precio_estan = valor,
-                EventoId = id
+                TipoempresaId = tipo,
+                Nombre = nombre,
+                direccion = direccion,
+                correo = correo,
+                persona_responsable = persono,
+                telefono_contacto = contacto,
+                telefono_convencional = convencional,
+                extenencion_telefono = extencion,
+                EmpresaId = id
             };
             try
             {
-                _contexto.Evento.Update(evento);
+                _contexto.Empresa.Update(empresa);
                 _contexto.SaveChanges();
                 regresa = new IdentityError
                 {
@@ -172,14 +189,14 @@ namespace FICCE.Models
             return ListaEditar;
         }
 
-        public List<IdentityError> ModeloEliminarEvento(int id)
+        public List<IdentityError> ModeloEliminarEmpresa(int id)
         {
             List<IdentityError> ListaEliminar = new List<IdentityError>();
             IdentityError dato = new IdentityError();
-            var evento = new Evento { EventoId = id };
+            var empresa = new Empresa { EmpresaId = id };
             try
             {
-                _contexto.Evento.Remove(evento);
+                _contexto.Empresa.Remove(empresa);
                 _contexto.SaveChanges();
                 dato = new IdentityError
                 {
@@ -202,10 +219,10 @@ namespace FICCE.Models
         {
             List<object[]> lista = new List<object[]>();
             string dato = "";
-            var respuesta = _contexto.Evento.OrderBy(s => s.Ciudad).ToList();
+            var respuesta = _contexto.Empresa.OrderBy(s => s.Nombre).ToList();
             foreach (var item in respuesta)
             {
-                dato += "<tr class='info'><td>" + item.Ciudad + "</td> <td>" + item.dia_inicio + "</td><td>" + item.dia_fin + "</td><td>"+ item.precio_estan+"</td></tr>";
+                dato += "<tr class='info'><td>" + item.EmpresaId + "</td> <td>" + item.Nombre + "</td><td>" + item.direccion + "</td><td>" + item.correo + "</td><td>" + item.persona_responsable + "</td><td>" + item.telefono_convencional + "</td><td>" + item.extenencion_telefono + "</td><td>" + item.telefono_contacto + "</td><td>" + item.TipoempresaId + "</td></tr>";
             }
             object[] objeto = { dato };
             lista.Add(objeto);
