@@ -15,14 +15,18 @@ namespace FICCE.Controllers
     {
         private readonly ApplicationDbContext _context;
         private EdificioModels claseEdificio;
-
+        private EventoModels claselistaevento;
         public EdificiosController(ApplicationDbContext context)
         {
             _context = context;
             claseEdificio = new EdificioModels(context);
+            claselistaevento = new EventoModels(context);
         }
 
-
+        public  List<Evento> ControladorListaEvento()
+        {
+            return claseEdificio.ClaselistaEvento();
+        }
         // GET: Sexos
         public async Task<IActionResult> Index()
         {

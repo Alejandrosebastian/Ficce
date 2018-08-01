@@ -51,6 +51,7 @@
             }
         });
     }
+   
     CargarEvento(id) {
         var accion = this.accion;
 

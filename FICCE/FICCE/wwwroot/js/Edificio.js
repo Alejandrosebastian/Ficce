@@ -35,6 +35,21 @@
             });
         }
     }
+    claselistaevento() {
+        var accion = this.accion;
+        var contador = 1;
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data: {};
+            success: (respuesta) => {
+                for (var i = 0; <respuesta.length; i++) {
+                    document.getElementById('Ciudad').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].ciudad);
+                    contador++
+                }
+            }
+        });
+    }
 
     ListadeEdificio() {
         var accion = this.accion;
