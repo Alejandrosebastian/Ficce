@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
-    public class EventosController : Controller
+    public class EstantesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private EventoModels claseEvento;
+        private EstantesModels claseEstantes;
 
-        public EventosController(ApplicationDbContext context)
+        public EstantesController(ApplicationDbContext context)
         {
             _context = context;
-            claseEvento = new EventoModels(context);
+            claseEstantes = new EstantesModels(context);
         }
 
         public async Task<IActionResult> Index()
@@ -27,14 +27,14 @@ namespace FICCE.Controllers
             return View(await _context.Evento.ToListAsync());
         }
 
-        public List<IdentityError> ControladorGuardaEvento(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ControladorGuardaEstantes(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            return claseEvento.ModeloGrabaEvento(ciudad, fecha_ini, fecha_fin, valor);
+            return claseEstantes.ModeloGrabaEstantes(ciudad, fecha_ini, fecha_fin, valor);
         }
 
-        public List<object[]> ControladorListaEvento()
+        public List<object[]> ControladorListaEstantes()
         {
-            return claseEvento.ModeloListaEvento();
+            return claseEstantes.ModeloListaEstantes();
         }
         public List<Evento> ControladorUnEvento(int id)
         {
@@ -45,17 +45,17 @@ namespace FICCE.Controllers
             return res;
         }
 
-        public List<IdentityError> ControladorEditaEvento(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ControladorEditaEstantes(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            return claseEvento.ModeloEditarEvento(id, ciudad, fecha_ini, fecha_fin, valor);
+            return claseEstantes.ModeloEditarEvento(id, ciudad, fecha_ini, fecha_fin, valor);
         }
         public List<IdentityError> ControladorEliminarEvento(int id)
         {
-            return claseEvento.ModeloEliminarEvento(id);
+            return claseEstantes.ModeloEliminarEvento(id);
         }
         public List<object[]> ContronladorImprimirEvento()
         {
-            return claseEvento.ModeloImpresion();
+            return claseEstantes.ModeloImpresion();
         }
     }
 }
