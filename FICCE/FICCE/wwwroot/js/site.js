@@ -321,12 +321,18 @@ var eliminaEmpleado = (id) => {
         alert('registro eliminado');
     } else { alert('usted canselo la elimnacion del registro'); }
 }
-var CargaParaImpresionEmpleado = () => {
-    var accion = 'Compras/ContronladorImprimirEmpleado';
-    var carga = new ClaseCompra('', '', '', '', '', '', '', accion);
-    carga.ImprimirEdificio();
+    var CargaParaImpresionEmpleado = () => {
+        var accion = 'Compras/ContronladorImprimirEmpleado';
+        var carga = new ClaseCompra('', '', '', '', '', '', '', accion);
+        carga.ImprimirEdificio();
+
+    }
+
+        var listaeventos = () => {
+            var accion = 'Eventos/ControladorListaEvento';
+            var eventos = new ClaseEvento('', '', '', '', '', accion);
+            eventos.claselistaevento();
+        }
 
 
-}
-
-
+    

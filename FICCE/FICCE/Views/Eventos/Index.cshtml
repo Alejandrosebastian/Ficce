@@ -58,6 +58,46 @@
 <table class="table">
     <thead>
         <tr>
+<<<<<<< HEAD
+                <th>
+                    @Html.DisplayNameFor(model => model.Ciudad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dia_inicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dia_fin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.precio_estan)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dia_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dia_fin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio_estan)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EventoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EventoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EventoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+=======
 
             <th>Ciudad</th>
             <th>Fecha de inicio</th>
@@ -69,6 +109,7 @@
         </tr>
     </thead>
     <tbody id="ListaEvento"></tbody>
+>>>>>>> 10fbef7d42016ec30077090881ac7b4f685e3122
 </table>
 
 
