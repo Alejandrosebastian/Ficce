@@ -17,7 +17,7 @@ namespace FICCE.Models
         }
         public List<Evento> ClaseModeloEstantes()
         {
-            return _contexo.Evento.OrderBy(e => e.año).ToList();
+            return _contexo.Evento.OrderBy(e => e.Ciudad).ToList();
         }
         public List<IdentityError> ClaseGurdarEstantes(int Ancho, int Largo,string Ubicacion, int Evento, int Planta)
         {

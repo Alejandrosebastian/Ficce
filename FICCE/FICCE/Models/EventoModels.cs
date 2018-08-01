@@ -23,7 +23,7 @@ namespace FICCE.Models
             IdentityError dato = new IdentityError();
             var Objetoedificio = new Evento
             {
-                ciudad = ciudad,
+                Ciudad = ciudad,
                 dia_fin = fecha_ini,
                 dia_inicio = fecha_ini,
                 precio_estan = valor
@@ -57,16 +57,16 @@ namespace FICCE.Models
             var evento = (from e in _contexto.Evento
                             select new
                             {
-                                e.ciudad,
+                                e.Ciudad,
                                 e.dia_inicio,
                                 e.dia_fin,
                                 e.precio_estan,
                                 e.EventoId
-                            }).OrderBy(e => e.ciudad).ToList();
+                            }).OrderBy(e => e.Ciudad).ToList();
             foreach (var item in evento)
             {
                 resultado += "<tr>" +
-                    "<td>" + item.ciudad + "</td>" +
+                    "<td>" + item.Ciudad + "</td>" +
                     "<td>" + item.dia_inicio + "</td>" +
                     "<td>" + item.dia_fin + "</td>" +
                     "<td>" + item.precio_estan + "</td>" +
@@ -144,7 +144,7 @@ namespace FICCE.Models
             IdentityError regresa = new IdentityError();
             var evento = new Evento
             {
-                ciudad = ciudad,
+                Ciudad = ciudad,
                 dia_fin = fecha_fin,
                 dia_inicio = fecha_ini,
                 precio_estan = valor,
@@ -202,10 +202,10 @@ namespace FICCE.Models
         {
             List<object[]> lista = new List<object[]>();
             string dato = "";
-            var respuesta = _contexto.Evento.OrderBy(s => s.ciudad).ToList();
+            var respuesta = _contexto.Evento.OrderBy(s => s.Ciudad).ToList();
             foreach (var item in respuesta)
             {
-                dato += "<tr class='info'><td>" + item.ciudad + "</td> <td>" + item.dia_inicio + "</td><td>" + item.dia_fin + "</td><td>"+ item.precio_estan+"</td></tr>";
+                dato += "<tr class='info'><td>" + item.Ciudad + "</td> <td>" + item.dia_inicio + "</td><td>" + item.dia_fin + "</td><td>"+ item.precio_estan+"</td></tr>";
             }
             object[] objeto = { dato };
             lista.Add(objeto);

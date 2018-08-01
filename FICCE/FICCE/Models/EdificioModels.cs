@@ -20,7 +20,7 @@ namespace FICCE.Models
         }
         public List<Evento> ClaselistaEvento()
         {
-            return _contexto.Evento.OrderBy(e => e.año).ToList();
+            return _contexto.Evento.OrderBy(e => e.Ciudad).ToList();
         }
         public List<IdentityError> ModeloGrabaEdificio(int evento,string nombre,string ubicacion)
         {
@@ -65,14 +65,14 @@ namespace FICCE.Models
                                     e.EdificioId,
                                     e.Nombre,
                                     e.Ubicacion,
-                                    ev.año
+                                    
                                 }).OrderBy(e => e.Nombre).ToList();
             foreach (var item in edificio)
             {
                 resultado += "<tr>" +
                     "<td>" + item.Nombre + "</td>" +
                     "<td>" + item.Ubicacion + "</td>" +
-                    "<td>" + item.año + "</td>" +
+                   
                     "<td>" +
                     "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEdificio' onclick='CargaEdificio(" + item.EdificioId + ")'>Editar</a>" +
                     "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEdificio' onclick='CargaParaImpresion();'>Imprimir</a>" +
