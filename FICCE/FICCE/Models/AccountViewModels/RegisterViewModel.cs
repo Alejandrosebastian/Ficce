@@ -26,13 +26,13 @@ namespace FICCE.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-
-
-            [DataType(DataType.Text)]
-            [Display(Name = "Roles de Usuario")]
-            [UIHint("List")]
-
+        [DataType(DataType.Text)]
+        [Display(Name = "Roles de Usuario")]
+        [UIHint("List")]
         public List<SelectListItem> Roles { get; set; }
+
+
+        
         public string Rol { get; set; }
         public RegisterViewModel()
         {

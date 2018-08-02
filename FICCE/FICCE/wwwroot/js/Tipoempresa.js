@@ -42,8 +42,9 @@ class Clasetipoempresa {
             url: accion,
             data: {},
             success: (respuesta) => {
+                
                 $.each(respuesta, (index, val) => {
-                    $('#ListaTipoempresa').html(val[0]);
+                    $('#listatipoempresa').html(val[0]);
                 });
             }
         });

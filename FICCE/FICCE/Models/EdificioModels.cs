@@ -74,7 +74,7 @@ namespace FICCE.Models
                     "<td>" + item.Ubicacion + "</td>" +
                    
                     "<td>" +
-                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEdificio' onclick='CargaEdificio(" + item.EdificioId + ")'>Editar</a>" +
+                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEdificio' onclick='CargaEdificio(" + item.EdificioId + ");listaeventos()'>Editar</a>" +
                     "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEdificio' onclick='CargaParaImpresion();'>Imprimir</a>" +
                     "<a class='btn btn-danger' onclick='eliminaEdificio(" + item.EdificioId + ")'>Eliminar</a>" +
                     "</td>"

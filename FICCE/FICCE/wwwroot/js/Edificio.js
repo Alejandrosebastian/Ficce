@@ -106,7 +106,7 @@
             { id },
             (respuesta) => {
                 console.log(respuesta);
-                document.getElementById('evento').value = respuesta[0].eventoId;
+                document.getElementById('EventoId').value = respuesta[0].eventoId;
                 document.getElementById('nombre').value = respuesta[0].nombre;
                 document.getElementById('ubicacion').value = respuesta[0].ubicacion;
                 document.getElementById('id').value = respuesta[0].edificioId;
@@ -144,7 +144,7 @@
     limpiarcajas() {
         document.getElementById('nombre').value = '';
         document.getElementById('ubicacion').value = '';
-        document.getElementById('evento').value = '';
+        document.getElementById('EventoId').value = '';
         document.getElementById('id').value = '';
         //$('#sexo').value = '';
         $('#IngresoEdificio').modal('hide');

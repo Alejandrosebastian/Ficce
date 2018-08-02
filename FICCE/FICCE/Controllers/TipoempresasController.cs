@@ -27,6 +27,7 @@ namespace FICCE.Controllers
 
             return clasetipoempresa.ModeloGuardatipoempresa(Detalle, Nombre);
         }
+
         public List<object[]> Controladorlistatipo()
         {
             return clasetipoempresa.ModeloListatipoempresa();

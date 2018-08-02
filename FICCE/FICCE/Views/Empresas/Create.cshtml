@@ -1,67 +1,126 @@
-﻿@model FICCE.Models.Empresa
+﻿@*@model IEnumerable<FICCE.Models.Edificio>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ubicacion)
+                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Evento)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evento.EventoId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EdificioId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EdificioId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EdificioId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Empresa";
 }
 
-<h2>Create</h2>
+<h2>Lista de empresas</h2>
 
-<h4>Empresa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+<p>
+    <a href="#" data-toggle="modal" data-target="#IngresoEmpresa">Ingreso Empresa</a>
+</p>
+
+
+
+
+
+
+
+<div class="modal fade" id="IngresoEmpresa" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Empresas
+                </h4>
             </div>
-            <div class="form-group">
-                <label asp-for="direccion" class="control-label"></label>
-                <input asp-for="direccion" class="form-control" />
-                <span asp-validation-for="direccion" class="text-danger"></span>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Tipo de empresa</label>
+                        <input id="tipo" name="tipo" class="form-control" placeholder="ingrese el id del tipo de empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>
+                        <input id="nombre" name="nombre" class="form-control" placeholder="ingrese el nombre del edificio" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Direccion</label>
+                        <input id="direccion" name="direccion" class="form-control" placeholder="ingrese la direccion de la empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Correo</label>
+                        <input id="correo" name="correo" class="form-control" placeholder="ingrese el correo de la persona responsable de la empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nombre de la persona responsable</label>
+                        <input id="persono" name="persono" class="form-control" placeholder="ingrese el nombre de la persona responsable de la empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefono de contacto</label>
+                        <input type="number" id="contacto" name="contacto" class="form-control" placeholder="ingrese el telefono de contacto de la persona responsable de la empresa" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Telefono de convencional</label>
+                        <input type="number" id="convencional" name="convencional" class="form-control" placeholder="ingrese el telefono convencional de la empresa " />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">extencion</label>
+                        <input Type="number" id="extencion" name="extencion" class="form-control" placeholder="ingrese el correo de la persona responsable de la empresa" />
+                    </div>
+                    <input id="id" name="id" hidden />
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="correo" class="control-label"></label>
-                <input asp-for="correo" class="form-control" />
-                <span asp-validation-for="correo" class="text-danger"></span>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="grabaEmpresa()">
+                    Guardar
+                </button>
             </div>
-            <div class="form-group">
-                <label asp-for="telefono_contacto" class="control-label"></label>
-                <input asp-for="telefono_contacto" class="form-control" />
-                <span asp-validation-for="telefono_contacto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="telefono_convencional" class="control-label"></label>
-                <input asp-for="telefono_convencional" class="form-control" />
-                <span asp-validation-for="telefono_convencional" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="extenencion_telefono" class="control-label"></label>
-                <input asp-for="extenencion_telefono" class="form-control" />
-                <span asp-validation-for="extenencion_telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="persona_responsable" class="control-label"></label>
-                <input asp-for="persona_responsable" class="form-control" />
-                <span asp-validation-for="persona_responsable" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoempresaId" class="control-label"></label>
-                <select asp-for="TipoempresaId" class ="form-control" asp-items="ViewBag.TipoempresaId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

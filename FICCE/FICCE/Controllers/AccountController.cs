@@ -215,6 +215,7 @@ namespace FICCE.Controllers
             RegisterViewModel r = new RegisterViewModel();
             r.obtenerRoles(_contexto);
             ViewData["ReturnUrl"] = returnUrl;
+
             return View(r);
         }
 
@@ -226,7 +227,7 @@ namespace FICCE.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,  };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

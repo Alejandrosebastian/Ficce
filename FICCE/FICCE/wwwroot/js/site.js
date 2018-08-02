@@ -6,9 +6,12 @@
 $().ready(() => {
     //mostrardatosjs();
     // listaClientes(1,'null');
-    //  ListaEdificio();
+    ListaEdificio();
     ListaPlanta();
     ListaEvento();
+    ListaCompra();
+    //ListaEmpleado();
+    Listatipoempresa();
     //SiteListaIndex(1);
 });
 
@@ -35,7 +38,7 @@ var Guardaestante = () => {
 
 
 var grabaEdificio = () => {
-    var evento = document.getElementById('evento').value;
+    var evento = document.getElementById('EventoId').value;
     var nombre = document.getElementById('nombre').value;
     var ubicacion = document.getElementById('ubicacion').value;
     var id = document.getElementById('id').value;
@@ -55,15 +58,13 @@ var grabaTipoempresa = () => {
     var Nombre = document.getElementById('Nombre').value;
     var Detalle = document.getElementById('Detalle').value;
     var TipoempresaId = document.getElementById('TipoempresaId').value;
-    var accion = 'Tipoempresa/Controladorguardatipoempresa';
-    var graba = new  Clasetipoempresa(Nombre, Detalle, accion);
     if (TipoempresaId == '') {
         TipoempresaId = '0';
         var accion = 'Tipoempresas/Controladorguardatipoempresa';
     } else {
         var accion = 'Tipoempresas/Controladorguardatipoempresa';
     }
-    var graba = new Clasetipoempresa(Nombre, Detalle, accion);
+    var graba = new Clasetipoempresa(Nombre, Detalle, '', accion);
     graba.Guardatipoempresa(TipoempresaId);
 
 }
@@ -106,7 +107,9 @@ var Impresion = () => {
 }
 
 var listaestantes = () => {
-    var accion = 'Estantes/'
+    var accion = 'Estantes/ControladorListaEstante';
+    var sexo = new ClaseEdificio('', '', '', '', accion);
+    sexo.ListadeEdificio();
 }
 
 var grabaEvento = () => {
