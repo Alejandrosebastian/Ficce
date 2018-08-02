@@ -7,147 +7,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FICCE.Data;
 using FICCE.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FICCE.Controllers
 {
     public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EventoModels claseEvento;
 
         public EventosController(ApplicationDbContext context)
         {
             _context = context;
+            claseEvento = new EventoModels(context);
         }
 
-        // GET: Eventos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Evento.ToListAsync());
         }
 
-        // GET: Eventos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaEvento(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var evento = await _context.Evento
-                .SingleOrDefaultAsync(m => m.EventoId == id);
-            if (evento == null)
-            {
-                return NotFound();
-            }
-
-            return View(evento);
+            return claseEvento.ModeloGrabaEvento(ciudad, fecha_ini, fecha_fin, valor);
         }
 
-        // GET: Eventos/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaEvento()
         {
-            return View();
+            return claseEvento.ModeloListaEvento();
+        }
+        public List<Evento> ControladorUnEvento(int id)
+        {
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var res = (from s in _context.Evento
+                       where s.EventoId == id
+                       select s).ToList();
+            return res;
         }
 
-        // POST: Eventos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventoId,Ciudad,dia_inicio,dia_fin,precio_estan")] Evento evento)
+        public List<IdentityError> ControladorEditaEvento(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(evento);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(evento);
+            return claseEvento.ModeloEditarEvento(id, ciudad, fecha_ini, fecha_fin, valor);
         }
-
-        // GET: Eventos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarEvento(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var evento = await _context.Evento.SingleOrDefaultAsync(m => m.EventoId == id);
-            if (evento == null)
-            {
-                return NotFound();
-            }
-            return View(evento);
+            return claseEvento.ModeloEliminarEvento(id);
         }
-
-        // POST: Eventos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventoId,Ciudad,dia_inicio,dia_fin,precio_estan")] Evento evento)
+        public List<object[]> ContronladorImprimirEvento()
         {
-            if (id != evento.EventoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(evento);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EventoExists(evento.EventoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(evento);
-        }
-
-        // GET: Eventos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var evento = await _context.Evento
-                .SingleOrDefaultAsync(m => m.EventoId == id);
-            if (evento == null)
-            {
-                return NotFound();
-            }
-
-            return View(evento);
-        }
-
-        // POST: Eventos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var evento = await _context.Evento.SingleOrDefaultAsync(m => m.EventoId == id);
-            _context.Evento.Remove(evento);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EventoExists(int id)
-        {
-            return _context.Evento.Any(e => e.EventoId == id);
+            return claseEvento.ModeloImpresion();
         }
     }
 }
+

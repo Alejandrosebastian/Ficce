@@ -1,5 +1,14 @@
 ﻿// Write your JavaScript code.
-
+$().ready(() => {
+    //mostrardatosjs();
+    // listaClientes(1,'null');
+    //ListaEdificio();
+    ListaPlanta();
+    ListaEvento();
+    ListaEmpresa();
+    ListaEmpleado();
+    //SiteListaIndex(1);
+});
 var Guardaestante = () => {
     var Ancho = document.getElementById('Ancho').value;
     var Largo = docuement.getElementById('Largo').value;
@@ -19,14 +28,7 @@ var Guardaestante = () => {
     graba.Guardaestante(EstanteId)
 }
 
-$().ready(() => {
-    //mostrardatosjs();
-    // listaClientes(1,'null');
-    ListaEdificio();
-    ListaPlanta();
-    ListaEvento();
-    //SiteListaIndex(1);
-});
+
 var grabaEdificio = () => {
     var evento = document.getElementById('evento').value;
     var nombre = document.getElementById('nombre').value;
@@ -309,7 +311,7 @@ var ListaEmpleado = () => {
 }
 var CargaEmpleado = (id) => {
     var accion = 'Empleados/ControladorUnEmpleado';
-    var unsexo = new Claseempleado('', '', '', '', '', '', '', accion);
+    var unsexo = new ClaseEmpleado('', '', '', '', '', '', '', accion);
     unsexo.CargarEmpleado(id);
 }
 var eliminaEmpleado = (id) => {
@@ -323,8 +325,8 @@ var eliminaEmpleado = (id) => {
 }
     var CargaParaImpresionEmpleado = () => {
         var accion = 'Compras/ContronladorImprimirEmpleado';
-        var carga = new ClaseCompra('', '', '', '', '', '', '', accion);
-        carga.ImprimirEdificio();
+        var carga = new ClaseEmpleado('', '', '', '', '', '', '', accion);
+        carga.ImprimirEmpleado();
 
     }
 

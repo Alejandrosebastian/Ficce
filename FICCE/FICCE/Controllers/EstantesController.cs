@@ -27,14 +27,14 @@ namespace FICCE.Controllers
             return View(await _context.Evento.ToListAsync());
         }
 
-        public List<IdentityError> ControladorGuardaEstantes(string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ControladorGuardaEstantes(int Ancho, int Largo, string Ubicacion, int Evento, int Planta)
         {
-            return claseEstantes.ModeloGrabaEstantes(ciudad, fecha_ini, fecha_fin, valor);
+            return claseEstantes.ClaseGurdarEstantes(Ancho,Largo, Ubicacion, Evento,Planta);
         }
 
         public List<object[]> ControladorListaEstantes()
         {
-            return claseEstantes.ModeloListaEstantes();
+            return claseEstantes.ModeloListaEstante();
         }
         public List<Evento> ControladorUnEvento(int id)
         {
@@ -45,18 +45,18 @@ namespace FICCE.Controllers
             return res;
         }
 
-        public List<IdentityError> ControladorEditaEstantes(int id, string ciudad, DateTime fecha_ini, DateTime fecha_fin, int valor)
+        public List<IdentityError> ControladorEditaEstantes(int id, int Ancho, int Largo, string Ubicacion, int Evento, int Planta)
         {
-            return claseEstantes.ModeloEditarEvento(id, ciudad, fecha_ini, fecha_fin, valor);
+            return claseEstantes.ModeloEditarEstante(Ancho, Largo, Ubicacion, Evento, Planta,id);
         }
-        public List<IdentityError> ControladorEliminarEvento(int id)
-        {
-            return claseEstantes.ModeloEliminarEvento(id);
-        }
-        public List<object[]> ContronladorImprimirEvento()
-        {
-            return claseEstantes.ModeloImpresion();
-        }
+        //public List<IdentityError> ControladorEliminarEvento(int id)
+        //{
+        //    return claseEstantes.ModeloEliminarEvento(id);
+        //}
+        //public List<object[]> ContronladorImprimirEvento()
+        //{
+        //    return claseEstantes.ModeloImpresion();
+        //}
     }
 }
 

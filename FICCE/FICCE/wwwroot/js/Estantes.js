@@ -51,6 +51,6 @@ class ClaseEstante {
         document.getElementById('Planta').value = '';
         document.getElementById('id').value = '';
         $('#IngresoEstante').modal('hide');
-        
+        ListaEstante();
     }
 }

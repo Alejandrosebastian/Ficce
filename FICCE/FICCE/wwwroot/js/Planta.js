@@ -95,6 +95,6 @@
         document.getElementById('id').value = '';
         //$('#sexo').value = '';
         $('#IngresoPlanta').modal('hide');
-        ListaEdificio();
+        ListaPlanta();
     }
 }

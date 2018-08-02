@@ -117,7 +117,7 @@
         document.getElementById('convencional').value = '';
         document.getElementById('extencion').value = '';
         //$('#sexo').value = '';
-        $('#IngresoEdificio').modal('hide');
-        ListaEdificio();
+        $('#IngresoEmpresa').modal('hide');
+        ListaEmpresa();
     }
 }
