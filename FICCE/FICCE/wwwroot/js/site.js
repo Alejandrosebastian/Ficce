@@ -1,4 +1,16 @@
-﻿// Write your JavaScript code.
+﻿
+
+// Write your JavaScript code.
+
+$().ready(() => {
+    //mostrardatosjs();
+    // listaClientes(1,'null');
+    //  ListaEdificio();
+    ListaPlanta();
+    ListaEvento();
+    //SiteListaIndex(1);
+});
+
 
 var Guardaestante = () => {
     var Ancho = document.getElementById('Ancho').value;
@@ -19,14 +31,7 @@ var Guardaestante = () => {
     graba.Guardaestante(EstanteId)
 }
 
-$().ready(() => {
-    //mostrardatosjs();
-    // listaClientes(1,'null');
-    ListaEdificio();
-    ListaPlanta();
-    ListaEvento();
-    //SiteListaIndex(1);
-});
+
 var grabaEdificio = () => {
     var evento = document.getElementById('evento').value;
     var nombre = document.getElementById('nombre').value;
@@ -329,9 +334,9 @@ var eliminaEmpleado = (id) => {
     }
 
         var listaeventos = () => {
-            var accion = 'Eventos/ControladorListaEvento';
-            var eventos = new ClaseEvento('', '', '', '', '', accion);
-            eventos.claselistaevento();
+            var accion = 'edificios/ControladorListaEvento';
+            var edifcios = new ClaseEdificio('', '', '', '', accion);
+            edifcios.claselistaevento();
         }
 
 

@@ -9,15 +9,13 @@ namespace FICCE.Models
     public class Evento
     {
         public int EventoId { get; set; }
-        [Display(Name = "Cuidad en la que se realiza la fira")]
-       
-       
+        [Display(Name = "Nombre de la Feria")]      
         public string Ciudad { get; set; }
-        [Display(Name = "Fecha de inicio de la fira")]
+        [Display(Name = "Fecha de inicio de la feria")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{dd-MM}", ApplyFormatInEditMode = true)]
         public DateTime dia_inicio { get; set; }
-        [Display(Name = "Fecha de fin de la fira")]
+        [Display(Name = "Fecha de fin de la feria")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{dd-MM}", ApplyFormatInEditMode = true)]
         public DateTime dia_fin { get; set; }

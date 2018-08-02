@@ -7,33 +7,48 @@
         this.accion = accion;
     }
     GuardarEdificio(id) {
-        var evento = this.evento;
-        var nombre = this.nombre;
-        var ubicacion = this.ubicacion;
-        var accion = this.accion;
-        if (id == '0') {
-            $.ajax({
-                type: "POST",
-                url: accion,
-                data: { evento, nombre, ubicacion },
-                success: (respuesta) => {
-                    if (respuesta[0].code == 'save') {
-                        this.limpiarcajas();
-                    }
-                }
-            });
+        if (this.nombre == '') {
+            document.getElementById('Nombre').focus();
+
         } else {
-            $.ajax({
-                type: "POST",
-                url: accion,
-                data: { id, evento,nombre,ubicacion },
-                success: (respuesta) => {
-                    if (respuesta[0].code == 'save') {
-                        this.limpiarcajas();
-                    }
+            if (this.ubicacion == '') {
+                document.getElementById('Ubicacion').focus();
+            }
+            else {
+                if (this.evento == '0') {
+                    document.getElementById('Evento').focus();
+                } else {
+                    var nombre = this.nombre;
+                    var ubicacion = this.ubicacion;
+                    var evento = this.evento;
+                    var accion = this.accion;
+                    var valor = '';
+                    $.ajax({
+                        type: "POST",
+                        url: accion,
+                        data: {
+                            nombre,
+                            ubicacion,
+                            evento
+                        },
+                        success: (respuesta) => {
+                            $.each(respuesta, (contador, val) => {
+                                valor = val.code;
+                            });
+                            if (valor === 'save') {
+                                $('#IngresoEdificio').modal('hide');
+
+                            } else {
+                                alert(valor);
+                            }
+                            alert(valor);
+                        }
+                    });
                 }
-            });
+
+            }
         }
+        
     }
     claselistaevento() {
         var accion = this.accion;
@@ -41,11 +56,14 @@
         $.ajax({
             type: "POST",
             url: accion,
-            data: {};
+            data: {},
             success: (respuesta) => {
-                for (var i = 0; <respuesta.length; i++) {
-                    document.getElementById('Ciudad').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].ciudad);
-                    contador++
+                console.log(respuesta);
+                if (0 < respuesta.length) {
+                    for (var i = 0; i < respuesta.length; i++) {
+                        document.getElementById('EventoId').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].eventoId);
+                        contador++;
+                    }
                 }
             }
         });
