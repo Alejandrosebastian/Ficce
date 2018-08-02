@@ -58,7 +58,7 @@
             url: accion,
             data: {},
             success: (respuesta) => {
-                console.log(respuesta);
+                
                 if (0 < respuesta.length) {
                     for (var i = 0; i < respuesta.length; i++) {
                         document.getElementById('EventoId').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].eventoId);
@@ -68,22 +68,7 @@
             }
         });
     }
-    //claselistaevento() {
-    //    var accion = this.accion;
-    //    var contador = 1;
-    //    $.ajax({
-    //        type: "POST",
-    //        url: accion,
-    //        data: {};
-    //        success: (respuesta) => {
-    //            for (var i = 0; <respuesta.length; i++) {
-    //                document.getElementById('Ciudad').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].ciudad);
-    //                contador++
-    //            }
-    //        }
-    //    });
-    //}
-
+ 
 
     ListadeEdificio() {
         var accion = this.accion;

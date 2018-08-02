@@ -3,7 +3,7 @@
 <h2>Index</h2>
 
 <p>
-    <a href="#" data-toggle="modal" data-target="#IngresoEstante" onclick="">Nuevo estante</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoEstante" onclick="listaeventos(); listaplanta();">Nuevo estante</a>
 </p>
 <table class="table">
     <thead>
@@ -39,7 +39,7 @@
                 </button>
                 <h4 class="modal-title"
                     id="EtiquetaModal">
-                    Tipo empresa
+                    Nuevo Estante
                 </h4>
             </div>
             <div class="modal-body">
@@ -63,18 +63,26 @@
                         <div class="form-group">
                             <label class="control-label">Evento</label>
                             <select id="EventoId" name="EventoId" required class="form-control">
-                                <option value="0">Seleccione el Personal asignado a esta operación</option>
+                                <option value="0">Seleccione el evento</option>
                             </select>
                             <br />
-                            <span id="mensajeper" class="alert alert-danger hidden">Seleccione al personal asignado</span>
+                            <span id="mensajeper" class="alert alert-danger hidden">Seleccione el evento</span>
                         </div>
-                        <input id="TipoempresaId" name="TipoempresaId" hidden />
+                        <div class="form-group">
+                            <label class="control-label">Planta</label>
+                            <select id="PlantaId" name="PlantaId" required class="form-control">
+                                <option value="0">Seleccione la planta en la que esta ubicado el estante</option>
+                            </select>
+                            <br />
+                            <span id="mensajeper" class="alert alert-danger hidden">Seleccione la planta en la que esta ubicado el estante</span>
+                        </div>
+                        <input id="id" name="id" hidden />
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">
                                 Cerrar
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="grabaTipoempresa()">
+                            <button type="button" class="btn btn-primary" onclick="Guardaestante()">
                                 Guardar
                             </button>
 

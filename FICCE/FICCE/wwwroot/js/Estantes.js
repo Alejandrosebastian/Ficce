@@ -1,48 +1,104 @@
-﻿import { lchmod } from "fs";
-
+﻿
 class ClaseEstante {
-    constructor(Ancho, Largo, Evento, Planta, accion) {
+    constructor(Ancho, Largo, Evento, Planta,id, accion) {
         this.Ancho = Ancho;
         this.Largo = Largo;
         this.Evento = Evento;
         this.Planta = Planta;
+        this.id = id;
         this.accion = accion;
 
     }
     GuardaEstante(id) {
-        var Ancho = this.Ancho;
-        var Largo = this.Largo;
-        var Evento = this.Evento;
-        var Planta = this.Planta;
-        var accion = this.accion;
-        if (id == '0') {
-            $.ajax({
-                type: "POST",
-                url: accion,
-                data: { Ancho, Largo, Evento, Planta },
-                success: (respuesta) => {
-                    if (respuesta[0].code == 'save') {
-                        this.limpiarcajas();
+        if (this.Ancho == '') {
+            document.getElementById('Ancho').focus();
+        } else {
+            if (this.Largo == '') {
+                document.getElementById('Largo').focus();
+            } else {
+                if (this.Evento == '0') {
+                    document.getElementById('Evento').focus();
+                } else {
+                    if (this.Ubicacion =='') {
+                        document.getElementById('Ubicacion').focus();
+
+                    } else {
+                    if (this.Planta == '0') {
+                        document.getElementById('Planta').focus();
+                    } else {
+                        var Ancho = this.Ancho;
+                        var Largo = this.Largo;
+                        var Evento = this.Evento;
+                        var Planta = this.Planta;
+                        var accion = this.accion;
+                        var valor = '';
+                        $.ajax({
+                            type: "POST",
+                            url: accion,
+                            data: {
+                                Ancho,
+                                Largo,
+                                Ubicacion,
+                                Evento,
+                                Planta
+                            },
+                            success: (respuesta) => {
+                                $.each(respuesta, (contador, val) => {
+                                    valor = val.code;
+                                });
+                                if (valor === 'save') {
+                                    $('#IngresoEstante').modal('hide');
+
+                                } else {
+                                    alert(valor);
+
+                                }
+                                alert(valor);
+                            }
+                        });
+                        }
                     }
                 }
-            });
-        } else {
-             $.ajax({
-                 type: "POST",
-                 url: accion,
-                 data: { id, Ancho, Largo, Evento, Planta },
-                 success: (respuesta) => {
-                     if (respuesta[0].code == 'save') {
-                         this.limpiarcajas();
-
-
-                     }
-                 }
-             });
-                    
-                      
+            }
         }
         
+    }
+    claselistaeventos() {
+        var accion = this.accion;
+        var contador = 1;
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data:{},
+            success: (respuesta) => {
+                console.log(respuesta);
+                if (0 < respuesta.length) {
+                    for (var i = 0; i < respuesta.length; i++) {
+                        document.getElementById('EventoId').options[contador] = new Option(respuesta[i].ciudad, respuesta[i].eventoId);
+                        contador++
+                    }
+                }
+            }
+        });
+    }
+    claselistaplanta() {
+        var accion = this.accion;
+        var contador = 1;
+        $.ajax({
+            type: "POST",
+            url: accion,
+            data:{},
+            success: (respuesta) => {
+                console.log(respuesta);
+                if (0 < respuesta.length) {
+                    for (var i = 0; i < respuesta.length; i++) {
+                        document.getElementById('PlantaId').options[contador] = new Option(respuesta[i].nombre, respuesta[i].plantaId);
+                        contador++
+                    }
+                }
+            }
+        });
+
     }
     limpiarcajas() {
         document.getElementById('Ancho').value = '';

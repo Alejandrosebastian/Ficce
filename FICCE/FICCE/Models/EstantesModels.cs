@@ -11,14 +11,23 @@ namespace FICCE.Models
     public class EstantesModels
     {
         private ApplicationDbContext _contexo;
+        private Evento claselistaEvento;
+        private Planta claselistaplanta;
         public EstantesModels(ApplicationDbContext contexto)
         {
             _contexo = contexto;
+            claselistaEvento = new Evento();
+            claselistaplanta = new Planta();
         }
-        public List<Evento> ClaseModeloEstantes()
+        public List<Evento> ClaseModeloEvento()
         {
             return _contexo.Evento.OrderBy(e => e.Ciudad).ToList();
         }
+        public List<Planta> ClasemodeloPLanta()
+        {
+            return _contexo.Planta.OrderBy(p => p.Nombre).ToList();
+        }
+        
         public List<IdentityError> ClaseGurdarEstantes(int Ancho, int Largo,string Ubicacion, int Evento, int Planta)
         {
             List<IdentityError> lista = new List<IdentityError>();

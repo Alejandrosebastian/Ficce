@@ -14,14 +14,21 @@ namespace FICCE.Controllers
     public class EstantesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private EstantesModels claseEstantes;
+        private EstantesModels claseestantes;
+        
+     
 
         public EstantesController(ApplicationDbContext context)
         {
             _context = context;
-            claseEstantes = new EstantesModels(context);
+            claseestantes = new EstantesModels(context);
+            
         }
-
+      
+        public  List<Planta> ControladorListaPlanta()
+        {
+            return claseestantes.ClasemodeloPLanta();
+        }
         public async Task<IActionResult> Index()
         {
             return View(await _context.Evento.ToListAsync());
@@ -29,12 +36,12 @@ namespace FICCE.Controllers
 
         public List<IdentityError> ControladorGuardaEstantes(int Ancho, int Largo, string Ubicacion, int Evento, int Planta)
         {
-            return claseEstantes.ClaseGurdarEstantes(Ancho,Largo, Ubicacion, Evento,Planta);
+            return claseestantes.ClaseGurdarEstantes(Ancho,Largo, Ubicacion, Evento,Planta);
         }
 
         public List<object[]> ControladorListaEstantes()
         {
-            return claseEstantes.ModeloListaEstante();
+            return claseestantes.ModeloListaEstante();
         }
         public List<Evento> ControladorUnEvento(int id)
         {
@@ -47,7 +54,7 @@ namespace FICCE.Controllers
 
         public List<IdentityError> ControladorEditaEstantes(int id, int Ancho, int Largo, string Ubicacion, int Evento, int Planta)
         {
-            return claseEstantes.ModeloEditarEstante(Ancho, Largo, Ubicacion, Evento, Planta,id);
+            return claseestantes.ModeloEditarEstante(Ancho, Largo, Ubicacion, Evento, Planta,id);
         }
         //public List<IdentityError> ControladorEliminarEvento(int id)
         //{

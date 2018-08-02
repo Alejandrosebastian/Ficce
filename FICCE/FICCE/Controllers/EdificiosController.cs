@@ -15,7 +15,7 @@ namespace FICCE.Controllers
     {
         private readonly ApplicationDbContext _context;
         private EdificioModels claseEdificio;
-        private EventoModels claselistaevento;
+        private EventoModels claselistaevento; 
         public EdificiosController(ApplicationDbContext context)
         {
             _context = context;

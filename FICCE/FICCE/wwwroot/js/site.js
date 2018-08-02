@@ -1,6 +1,3 @@
-
-﻿
-
 // Write your JavaScript code.
 
 $().ready(() => {
@@ -18,33 +15,39 @@ $().ready(() => {
 
 
 var Guardaestante = () => {
-    var Ancho = document.getElementById('Ancho').value;
-    var Largo = docuement.getElementById('Largo').value;
-    var Eventos = document.getElementById('EventoId');
-    var Evento = Eventos.options[formulas.selectdIndex].value;
-    var Planta = document.getElementById('Planta').valuel;
-    var EstanteId = docuemnt.getElementById('Id').valuel;
+    var eventos = document.getElementById('EventoId');
+    var evento = eventos.options[eventos.selectedIndex].value;
+    
 
-    if (EstanteId == '') {
-        EstanteId == 0;
+    var Plantas = document.getElementById('PlantaId');
+    var planta = Plantas.options[Plantas.selectedIndex].value;
+    var Ancho = document.getElementById('Ancho').value;
+    var Largo = document.getElementById('Largo').value;
+    
+    var EstanteId = document.getElementById('Id');
+
+    if (EstanteId == null) {
         var accion = 'Estantes/ControladorGuardaEstantes';
+        var graba = new ClaseEstante(Ancho, Largo, evento, planta, '', accion);
+        graba.GuardaEstante(id)
 
     } else {
-        var accion = 'Estantes/ControladorGuardaEstantes';
+       // var accion = 'Estantes/ControladorGuardaEstantes'; para editar
+        var graba = new ClaseEstante(Ancho, Largo, evento, Planta, id, accion);
+        graba.GuardaEstante(id)
+
     }
-    var graba = new ClaseEstante(Ancho, Largo, Evento, Planta, accion);
-    graba.Guardaestante(EstanteId)
 }
 
 
 var grabaEdificio = () => {
-<<<<<<< HEAD
-    var evento = document.getElementById('EventoId').value;
-=======
+
+    
+
     var accion = 'Edificios/ControladorGuardaEdificio';
     var eventos = document.getElementById('EventoId');
     var evento = eventos.options[eventos.selectdIndex].value;
->>>>>>> 74a7b2a9b76a5c446af0dcbf2ce8405301269f63
+
     var nombre = document.getElementById('nombre').value;
     var ubicacion = document.getElementById('ubicacion').value;
     var id = document.getElementById('id').value;
@@ -341,5 +344,9 @@ var eliminaEmpleado = (id) => {
             edifcios.claselistaevento();
         }
 
-
+var listaplanta = () => {
+    var accion = 'Estantes/ControladorListaPlanta';
+    var estante = new ClaseEstante('', '', '', '','', accion);
+    estante.claselistaplanta();
+}
     
