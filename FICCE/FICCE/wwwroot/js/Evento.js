@@ -104,6 +104,6 @@
         document.getElementById('id').value = '';
         //$('#sexo').value = '';
         $('#IngresoEvento').modal('hide');
-        ListaEdificio();
+        ListaEvento();
     }
 }

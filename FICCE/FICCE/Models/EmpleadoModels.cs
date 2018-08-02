@@ -81,9 +81,9 @@ namespace FICCE.Models
                     "<td>" + item.direccion+ "</td>" +
                     "<td>" + item.EmpresaId + "</td>" +
                     "<td>" +
-                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEmpresa' onclick='CargaEmpresa(" + item.EmpleadoId + ")'>Editar</a>" +
-                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEmpresa' onclick='CargaParaImpresion();'>Imprimir</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaEdificio(" + item.EmpleadoId + ")'>Eliminar</a>" +
+                    "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoEmpleado' onclick='CargaEmpleado(" + item.EmpleadoId + ")'>Editar</a>" +
+                    "<a class='btn btn-info' data-toggle='modal' data-target='#ImpresionEmpleado' onclick='CargaParaImpresion();'>Imprimir</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaEmpleado(" + item.EmpleadoId + ")'>Eliminar</a>" +
                     "</td>"
                     + "</tr>";
             }

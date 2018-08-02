@@ -114,7 +114,7 @@
         document.getElementById('direccion').value = '';
         document.getElementById('id').value = '';
         //$('#sexo').value = '';
-        $('#IngresoEdificio').modal('hide');
-        ListaEdificio();
+        $('#IngresoEmpleado').modal('hide');
+        ListaEmpleado();
     }
 }

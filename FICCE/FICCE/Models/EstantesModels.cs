@@ -83,7 +83,40 @@ namespace FICCE.Models
             ListaEstante.Add(dato);
             return ListaEstante;
         }
-      
+        public List<IdentityError> ModeloEditarEstante(int Ancho, int Largo, string Ubicacion, int Evento, int Planta,int id)
+        {
+            List<IdentityError> ListaEditar = new List<IdentityError>();
+            IdentityError regresa = new IdentityError();
+            var estante = new Estantes
+            {
+                Ancho = Ancho,
+                Largo = Largo,
+                Ubicacion = Ubicacion,
+                EventoId = Evento,
+                PlantaId = Planta,
+                EstantesId = id
+            };
+            try
+            {
+                _contexo.Estantes.Update(estante);
+                _contexo.SaveChanges();
+                regresa = new IdentityError
+                {
+                    Code = "save",
+                    Description = "save"
+                };
+            }
+            catch (Exception ex)
+            {
+                regresa = new IdentityError
+                {
+                    Code = ex.Message,
+                    Description = ex.Message
+                };
+            }
+            ListaEditar.Add(regresa);
+            return ListaEditar;
+        }
 
     }
 }

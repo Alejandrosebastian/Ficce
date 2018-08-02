@@ -25,7 +25,7 @@ namespace FICCE.Controllers
         // GET: Sexos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Edificio.ToListAsync());
+            return View(await _context.Empresa.ToListAsync());
         }
 
         public List<IdentityError> ControladorGuardaEmpresa(int tipo, string nombre, string direccion, string correo, string persono, string contacto, string convencional, string extencion)

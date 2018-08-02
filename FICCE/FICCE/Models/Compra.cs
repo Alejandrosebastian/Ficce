@@ -13,6 +13,11 @@ namespace FICCE.Models
         public Estantes Estantes { get; set; }
         public int EmpresaId { get; set; }
         public Empresa Empresa { get; set; }
+
         public string imagen { get; set; }
+
+       
+        
+
     }
 }

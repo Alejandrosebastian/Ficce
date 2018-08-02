@@ -1,3 +1,4 @@
+
 ﻿
 
 // Write your JavaScript code.
@@ -10,6 +11,7 @@ $().ready(() => {
     ListaEvento();
     //SiteListaIndex(1);
 });
+
 
 
 var Guardaestante = () => {
@@ -314,7 +316,7 @@ var ListaEmpleado = () => {
 }
 var CargaEmpleado = (id) => {
     var accion = 'Empleados/ControladorUnEmpleado';
-    var unsexo = new Claseempleado('', '', '', '', '', '', '', accion);
+    var unsexo = new ClaseEmpleado('', '', '', '', '', '', '', accion);
     unsexo.CargarEmpleado(id);
 }
 var eliminaEmpleado = (id) => {
@@ -328,8 +330,8 @@ var eliminaEmpleado = (id) => {
 }
     var CargaParaImpresionEmpleado = () => {
         var accion = 'Compras/ContronladorImprimirEmpleado';
-        var carga = new ClaseCompra('', '', '', '', '', '', '', accion);
-        carga.ImprimirEdificio();
+        var carga = new ClaseEmpleado('', '', '', '', '', '', '', accion);
+        carga.ImprimirEmpleado();
 
     }
 
