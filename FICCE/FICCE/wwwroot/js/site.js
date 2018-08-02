@@ -38,19 +38,16 @@ var Guardaestante = () => {
 
 
 var grabaEdificio = () => {
+<<<<<<< HEAD
     var evento = document.getElementById('EventoId').value;
+=======
+    var accion = 'Edificios/ControladorGuardaEdificio';
+    var eventos = document.getElementById('EventoId');
+    var evento = eventos.options[eventos.selectdIndex].value;
+>>>>>>> 74a7b2a9b76a5c446af0dcbf2ce8405301269f63
     var nombre = document.getElementById('nombre').value;
     var ubicacion = document.getElementById('ubicacion').value;
     var id = document.getElementById('id').value;
-
-
-    if (id == '') {
-        id == 0;
-        var accion = 'Edificios/ControladorGuardaEdificio';
-    }
-    else {
-        var accion = 'Edificios/ControladorEditaEdificio';
-    }
     var graba = new ClaseEdificio(evento,nombre,ubicacion,'', accion);
     graba.GuardarEdificio(id);
 }
